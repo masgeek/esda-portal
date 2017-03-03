@@ -13,8 +13,8 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-/vendor
-!/vendor/
+vendor/*
+!/vendor/autoload.php
 # composer itself is not needed
 composer.phar
 
@@ -28,5 +28,3 @@ phpunit.phar
 
 tests/_output/*
 tests/_support/_generated
-assetsmanager/
-vendor/
