@@ -7,6 +7,11 @@ $config = [
     'name' => YII_DEBUG ? 'ESDA PORTAL DEV' : 'ESDA PORTAL',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'modules' => [
+        'users' => [
+            'class' => 'app\modules\users\User',
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
