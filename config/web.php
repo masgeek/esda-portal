@@ -12,6 +12,12 @@ $config = [
             'class' => 'app\modules\user\users',
             'defaultRoute' => 'profile', //default controller
         ],
+        //webshell
+        'webshell' => [
+            'class' => 'samdark\webshell\Module',
+            // 'yiiScript' => Yii::getAlias('@root'). '/yii', // adjust path to point to your ./yii script
+            'allowedIPs' => ['127.0.0.1', '::1', '41.89.65.170'],
+        ],
     ],
     'components' => [
         'request' => [
