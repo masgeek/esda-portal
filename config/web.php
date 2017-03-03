@@ -4,6 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'name' => YII_DEBUG ? 'ESDA PORTAL DEV' : 'ESDA PORTAL',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
