@@ -21,7 +21,7 @@ class m170303_100643_create_user_uploads_table extends Migration
             'DATE_UPLOADED' => $this->dateTime()->comment('Date Uploaded'),
             'UPDATED' => $this->dateTime()->comment('Date Updated'),
             'DELETED' => $this->boolean()->defaultValue(0)->comment('File Deleted')
-        ]);
+        ], 'ENGINE=InnoDB');
 
         $this->addForeignKey('fk_user_uploads', 'user_uploads', 'USER_ID', 'user_profile', 'USER_ID', 'CASCADE', 'CASCADE');
     }

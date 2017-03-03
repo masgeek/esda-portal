@@ -22,7 +22,7 @@ class m170303_093052_create_user_profile_table extends Migration
             'ACCOUNT_STATUS' => $this->boolean()->defaultValue(0)->notNull()->comment('Account Status'),
             'DATE_REGISTERED' => $this->dateTime()->comment('Date Registered'),
             'DATE_UPDATED' => $this->dateTime()->comment('Last Updated')
-        ]);
+        ],'ENGINE=InnoDB');
     }
 
     /**

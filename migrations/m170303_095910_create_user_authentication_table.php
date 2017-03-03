@@ -19,7 +19,7 @@ class m170303_095910_create_user_authentication_table extends Migration
             'SALT' => $this->string(200)->notNull()->comment('Password Hash'),
             'CREATED' => $this->dateTime(),
             'UPDATED' => $this->dateTime()
-        ]);
+        ],'ENGINE=InnoDB');
 
         //add foregin keys
         $this->addForeignKey('fk_user_auth', 'user_authentication', 'USER_ID', 'user_profile', 'USER_ID', 'CASCADE', 'CASCADE');
