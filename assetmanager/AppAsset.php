@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
-        'css/bootstrap/lavish-bootstrap.css',
+        'css/bootstrap/bootstrap-theme.min.css',
     ];
     public $js = [
     ];
