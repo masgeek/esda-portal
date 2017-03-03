@@ -35,6 +35,16 @@ $config = [
             'linkAssets' => true,
             'forceCopy' => YII_DEBUG,
         ],
+        /* custom theme templates*/
+        'view' => [
+            'class' => 'yii\web\View',
+            'theme' => [
+                'class' => 'yii\base\Theme',
+                'basePath' => '@app/themes/my-material',
+                'baseUrl' => '@web/my-material',
+                'pathMap' => ['@app/views' => '@app/themes/my-material'],
+            ],
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
