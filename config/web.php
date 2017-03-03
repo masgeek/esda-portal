@@ -41,7 +41,7 @@ $config = [
                 'pathMap' => [
                     '@app/views' => '@app/themes/default'
                 ],
-                //'baseUrl' => 'themes/default' /* base url */
+                'baseUrl' => 'themes/default' /* base url */
             ]
         ],
         'cache' => [
