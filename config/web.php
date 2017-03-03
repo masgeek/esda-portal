@@ -37,13 +37,12 @@ $config = [
         ],
         /* custom theme templates*/
         'view' => [
-            'class' => 'yii\web\View',
             'theme' => [
-                'class' => 'yii\base\Theme',
-                'basePath' => '@app/themes/my-material',
-                'baseUrl' => '@web/my-material',
-                'pathMap' => ['@app/views' => '@app/themes/my-material'],
-            ],
+                'pathMap' => [
+                    '@app/views' => '@app/themes/default'
+                ],
+                //'baseUrl' => 'themes/default' /* base url */
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
