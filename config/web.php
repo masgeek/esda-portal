@@ -56,7 +56,7 @@ $config = [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 //custom rules
                 '/' => 'site',
-                'profile' => 'user',
+                'account' => 'users',
             ],
         ],
 
