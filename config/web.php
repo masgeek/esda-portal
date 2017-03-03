@@ -7,6 +7,10 @@ $config = [
     'name' => YII_DEBUG ? 'ESDA PORTAL DEV' : 'ESDA PORTAL',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'aliases' => [
+        '@bower' => 'vendor/bower-asset',
+    ],
+    /* Modules */
     'modules' => [
         'users' => [
             'class' => 'app\modules\user\users',
@@ -19,17 +23,24 @@ $config = [
             'allowedIPs' => ['127.0.0.1', '::1', '41.89.65.170'],
         ],
     ],
+    /* Components */
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'DPfBaTZhaeVQUF7vzn-JREtUJKiSYCQc',
+        ],
+        'assetManager' => [
+            'class' => 'yii\web\AssetManager',
+            'appendTimestamp' => true,
+            'linkAssets' => true,
+            'forceCopy' => YII_DEBUG,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

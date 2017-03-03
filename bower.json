@@ -1,0 +1,25 @@
+{
+  "name": "esda-portal",
+  "homepage": "ayes.uonbi.ac.ke",
+  "authors": [
+    "Sammy Barasa <barsamms@gmail.com>"
+  ],
+  "description": "AYES-ESDA User Portal",
+  "main": "index.php",
+  "keywords": [
+    "ayes",
+    "yii2",
+    "php",
+    "jquery"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower",
+    "test",
+    "tests"
+  ]
+}
