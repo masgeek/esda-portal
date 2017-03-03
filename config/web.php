@@ -82,7 +82,7 @@ $config = [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 //custom rules
                 '/' => 'site',
-                'account' => 'users',
+                'account' => 'users/profile',
             ],
         ],
 
