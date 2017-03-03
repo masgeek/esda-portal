@@ -7,6 +7,10 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+
+\app\assetmanager\AppAsset::register($this);
+\app\assetmanager\BowerAsset::register($this);
+\app\assetmanager\FontAssets::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
