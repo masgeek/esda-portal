@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\users\models;
+namespace app\modules\user\models;
 
 use Yii;
 
@@ -54,15 +54,15 @@ class UserProfile extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'USER_ID' => 'User  ID',
-            'USER_NAME' => 'Username',
-            'EMAIL_ADDRESS' => 'Email Address',
-            'SURNAME' => 'Surname',
-            'OTHER_NAMES' => 'Other Names',
-            'PHONE_NUMBER' => 'Phone Number',
-            'ACCOUNT_STATUS' => 'Account Status',
-            'DATE_REGISTERED' => 'Date Registered',
-            'DATE_UPDATED' => 'Last Updated',
+            'USER_ID' => Yii::t('app', 'User  ID'),
+            'USER_NAME' => Yii::t('app', 'Username'),
+            'EMAIL_ADDRESS' => Yii::t('app', 'Email Address'),
+            'SURNAME' => Yii::t('app', 'Surname'),
+            'OTHER_NAMES' => Yii::t('app', 'Other Names'),
+            'PHONE_NUMBER' => Yii::t('app', 'Phone Number'),
+            'ACCOUNT_STATUS' => Yii::t('app', 'Account Status'),
+            'DATE_REGISTERED' => Yii::t('app', 'Date Registered'),
+            'DATE_UPDATED' => Yii::t('app', 'Last Updated'),
         ];
     }
 

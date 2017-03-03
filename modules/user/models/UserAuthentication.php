@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\users\models;
+namespace app\modules\user\models;
 
 use Yii;
 
@@ -47,12 +47,12 @@ class UserAuthentication extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'AUTHENTICATION_ID' => 'Authentication  ID',
-            'USER_ID' => 'User  ID',
-            'PASSWORD' => 'Password',
-            'SALT' => 'Password Hash',
-            'CREATED' => 'Created',
-            'UPDATED' => 'Updated',
+            'AUTHENTICATION_ID' => Yii::t('app', 'Authentication  ID'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
+            'PASSWORD' => Yii::t('app', 'Password'),
+            'SALT' => Yii::t('app', 'Password Hash'),
+            'CREATED' => Yii::t('app', 'Created'),
+            'UPDATED' => Yii::t('app', 'Updated'),
         ];
     }
 

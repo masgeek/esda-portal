@@ -1,18 +1,18 @@
 <?php
 
-namespace app\modules\users\controllers;
+namespace app\modules\user\controllers;
 
 use Yii;
-use app\modules\users\models\UserProfile;
-use app\modules\users\search\ProfileSearch;
+use app\modules\user\models\UserUploads;
+use app\modules\user\search\UploadsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ProfileController implements the CRUD actions for UserProfile model.
+ * UploadsController implements the CRUD actions for UserUploads model.
  */
-class ProfileController extends Controller
+class UploadsController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class ProfileController extends Controller
     }
 
     /**
-     * Lists all UserProfile models.
+     * Lists all UserUploads models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProfileSearch();
+        $searchModel = new UploadsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Displays a single UserProfile model.
+     * Displays a single UserUploads model.
      * @param integer $id
      * @return mixed
      */
@@ -57,16 +57,16 @@ class ProfileController extends Controller
     }
 
     /**
-     * Creates a new UserProfile model.
+     * Creates a new UserUploads model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new UserProfile();
+        $model = new UserUploads();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->USER_ID]);
+            return $this->redirect(['view', 'id' => $model->UPLOAD_ID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,7 +75,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Updates an existing UserProfile model.
+     * Updates an existing UserUploads model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -85,7 +85,7 @@ class ProfileController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->USER_ID]);
+            return $this->redirect(['view', 'id' => $model->UPLOAD_ID]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -94,7 +94,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Deletes an existing UserProfile model.
+     * Deletes an existing UserUploads model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class ProfileController extends Controller
     }
 
     /**
-     * Finds the UserProfile model based on its primary key value.
+     * Finds the UserUploads model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return UserProfile the loaded model
+     * @return UserUploads the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UserProfile::findOne($id)) !== null) {
+        if (($model = UserUploads::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

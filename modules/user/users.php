@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\users;
+namespace app\modules\user;
 
 /**
  * users module definition class
  */
-class User extends \yii\base\Module
+class users extends \yii\base\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'app\modules\users\controllers';
+    public $controllerNamespace = 'app\modules\user\controllers';
 
     /**
      * @inheritdoc

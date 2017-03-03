@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\users\search;
+namespace app\modules\user\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\users\models\UserProfile;
+use app\modules\user\models\UserUploads;
 
 /**
- * ProfileSearch represents the model behind the search form about `app\modules\users\models\UserProfile`.
+ * UploadsSearch represents the model behind the search form about `app\modules\user\models\UserUploads`.
  */
-class ProfileSearch extends UserProfile
+class UploadsSearch extends UserUploads
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class ProfileSearch extends UserProfile
     public function rules()
     {
         return [
-            [['USER_ID', 'ACCOUNT_STATUS'], 'integer'],
-            [['USER_NAME', 'EMAIL_ADDRESS', 'SURNAME', 'OTHER_NAMES', 'PHONE_NUMBER', 'DATE_REGISTERED', 'DATE_UPDATED'], 'safe'],
+            [['UPLOAD_ID', 'USER_ID', 'PUBLICLY_AVAILABLE', 'DELETED'], 'integer'],
+            [['FILE_PATH', 'COMMENTS', 'DATE_UPLOADED', 'UPDATED'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ProfileSearch extends UserProfile
      */
     public function search($params)
     {
-        $query = UserProfile::find();
+        $query = UserUploads::find();
 
         // add conditions that should always apply here
 
@@ -59,17 +59,16 @@ class ProfileSearch extends UserProfile
 
         // grid filtering conditions
         $query->andFilterWhere([
+            'UPLOAD_ID' => $this->UPLOAD_ID,
             'USER_ID' => $this->USER_ID,
-            'ACCOUNT_STATUS' => $this->ACCOUNT_STATUS,
-            'DATE_REGISTERED' => $this->DATE_REGISTERED,
-            'DATE_UPDATED' => $this->DATE_UPDATED,
+            'PUBLICLY_AVAILABLE' => $this->PUBLICLY_AVAILABLE,
+            'DATE_UPLOADED' => $this->DATE_UPLOADED,
+            'UPDATED' => $this->UPDATED,
+            'DELETED' => $this->DELETED,
         ]);
 
-        $query->andFilterWhere(['like', 'USER_NAME', $this->USER_NAME])
-            ->andFilterWhere(['like', 'EMAIL_ADDRESS', $this->EMAIL_ADDRESS])
-            ->andFilterWhere(['like', 'SURNAME', $this->SURNAME])
-            ->andFilterWhere(['like', 'OTHER_NAMES', $this->OTHER_NAMES])
-            ->andFilterWhere(['like', 'PHONE_NUMBER', $this->PHONE_NUMBER]);
+        $query->andFilterWhere(['like', 'FILE_PATH', $this->FILE_PATH])
+            ->andFilterWhere(['like', 'COMMENTS', $this->COMMENTS]);
 
         return $dataProvider;
     }

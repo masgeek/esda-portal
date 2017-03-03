@@ -9,7 +9,8 @@ $config = [
     'bootstrap' => ['log'],
     'modules' => [
         'users' => [
-            'class' => 'app\modules\users\User',
+            'class' => 'app\modules\user\users',
+            'defaultRoute' => 'profile', //default controller
         ],
     ],
     'components' => [
@@ -55,6 +56,7 @@ $config = [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 //custom rules
                 '/' => 'site',
+                'profile' => 'user',
             ],
         ],
 

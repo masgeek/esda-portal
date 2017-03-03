@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\users\models;
+namespace app\modules\user\models;
 
 use Yii;
 
@@ -49,14 +49,14 @@ class UserUploads extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'UPLOAD_ID' => 'Upload  ID',
-            'USER_ID' => 'User  ID',
-            'FILE_PATH' => 'Document Path',
-            'COMMENTS' => 'Comments',
-            'PUBLICLY_AVAILABLE' => 'Publicly Available',
-            'DATE_UPLOADED' => 'Date Uploaded',
-            'UPDATED' => 'Date Updated',
-            'DELETED' => 'File Deleted',
+            'UPLOAD_ID' => Yii::t('app', 'Upload  ID'),
+            'USER_ID' => Yii::t('app', 'User  ID'),
+            'FILE_PATH' => Yii::t('app', 'Document Path'),
+            'COMMENTS' => Yii::t('app', 'Comments'),
+            'PUBLICLY_AVAILABLE' => Yii::t('app', 'Publicly Available'),
+            'DATE_UPLOADED' => Yii::t('app', 'Date Uploaded'),
+            'UPDATED' => Yii::t('app', 'Date Updated'),
+            'DELETED' => Yii::t('app', 'File Deleted'),
         ];
     }
 
