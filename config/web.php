@@ -39,14 +39,20 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/esd_db.php'),
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                //default rules
+                '<controller:\w+>/<id:\d+>' => '<controller>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                //custom rules
+                '/' => 'site',
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
