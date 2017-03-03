@@ -60,6 +60,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->view->title = 'AYES Portal';
         return $this->render('index');
     }
 
