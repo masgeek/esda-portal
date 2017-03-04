@@ -35,13 +35,13 @@ use yii\bootstrap\ActiveForm;
             <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
         </div>
         <div class="col-md-6">
-            <?= Html::a('Create Account', ['//site/register'], ['class' => 'btn btn-success btn-block',]) ?>
+            <?= Html::a('Create Account', ['//register'], ['class' => 'btn btn-success btn-block',]) ?>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="text-center">
-            <?= Html::a('Forgot password?', ['//site/recover'], ['class' => 'forgot-password',]) ?>
+            <?= Html::a('Forgot password?', ['//recover'], ['class' => 'forgot-password',]) ?>
         </div>
     </div>
 <?php ActiveForm::end(); ?>

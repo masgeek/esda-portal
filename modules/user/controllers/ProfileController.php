@@ -64,6 +64,7 @@ class ProfileController extends Controller
     public function actionCreate()
     {
         $model = new UserProfile();
+        $model->scenario = UserProfile::SCENARIO_SIGNUP;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->USER_ID]);

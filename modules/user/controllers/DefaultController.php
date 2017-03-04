@@ -17,4 +17,13 @@ class DefaultController extends Controller
     {
         return $this->render('index');
     }
+
+    /**
+     * @return string
+     */
+    public function actionRecover()
+    {
+        $this->view->title = 'Account Recovery';
+        return $this->render('index');
+    }
 }

@@ -22,6 +22,15 @@ use Yii;
  */
 class UserProfile extends \yii\db\ActiveRecord
 {
+
+    const SCENARIO_SIGNUP = 'signup';
+    const SCENARIO_UPDATE = 'test';
+
+
+    public $PASSWORD;
+    public $REPEAT_PASSWORD;
+    public $CHANGE_PASSWORD;
+
     /**
      * @inheritdoc
      */
@@ -32,19 +41,38 @@ class UserProfile extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
+     * @return array
+     */
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_SIGNUP] = ['USER_NAME', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD'];//Scenario Values Only Accepted
+        $scenarios[self::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD', 'PHONE_NO', 'TIMEZONE', 'COUNTRY', 'CHANGE_PASSWORD'];//Scenario Values Only Accepted
+        return $scenarios;
+    }
+
+    /**
+     * @inheritdoc
      */
     public function rules()
     {
         return [
+            [['SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD'], 'required', 'on' => [self::SCENARIO_SIGNUP, self::SCENARIO_UPDATE]],
+
             [['USER_NAME', 'EMAIL_ADDRESS', 'SURNAME', 'OTHER_NAMES'], 'required'],
             [['ACCOUNT_STATUS'], 'integer'],
             [['DATE_REGISTERED', 'DATE_UPDATED'], 'safe'],
             [['USER_NAME', 'SURNAME'], 'string', 'max' => 10],
-            [['EMAIL_ADDRESS'], 'string', 'max' => 15],
+            //[['EMAIL_ADDRESS'], 'string', 'max' => 15],
+            [['EMAIL_ADDRESS'], 'email'],
             [['OTHER_NAMES'], 'string', 'max' => 25],
             [['PHONE_NUMBER'], 'string', 'max' => 20],
             [['USER_NAME'], 'unique'],
             [['EMAIL_ADDRESS'], 'unique'],
+            ['REPEAT_PASSWORD', 'compare', 'compareAttribute' => 'PASSWORD', 'skipOnEmpty' => false, 'message' => "Passwords don't match"], //password confirmation rule
+
+            //default values
+            [['ACCOUNT_STATUS'], 'default', 'value' => 1],
         ];
     }
 
@@ -63,6 +91,9 @@ class UserProfile extends \yii\db\ActiveRecord
             'ACCOUNT_STATUS' => Yii::t('app', 'Account Status'),
             'DATE_REGISTERED' => Yii::t('app', 'Date Registered'),
             'DATE_UPDATED' => Yii::t('app', 'Last Updated'),
+            'PASSWORD' => Yii::t('app', 'Password'),
+            'REPEAT_PASSWORD' => Yii::t('app', 'Repeat Password'),
+            'CHANGE_PASSWORD' => Yii::t('app', 'Change Password'),
         ];
     }
 
