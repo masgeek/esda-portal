@@ -60,7 +60,7 @@ class UserProfile extends \yii\db\ActiveRecord
             [['SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD'], 'required', 'on' => [self::SCENARIO_SIGNUP, self::SCENARIO_UPDATE]],
 
             [['USER_NAME', 'EMAIL_ADDRESS', 'SURNAME', 'OTHER_NAMES'], 'required'],
-            [['ACCOUNT_STATUS'], 'integer'],
+            [['ACCOUNT_STATUS'], 'string', 'max' => 10],
             [['DATE_REGISTERED', 'DATE_UPDATED'], 'safe'],
             [['USER_NAME', 'SURNAME'], 'string', 'max' => 10],
             //[['EMAIL_ADDRESS'], 'string', 'max' => 15],

@@ -19,10 +19,10 @@ class m170303_093052_create_user_profile_table extends Migration
             'SURNAME' => $this->string(10)->notNull()->comment('Surname'),
             'OTHER_NAMES' => $this->string(25)->notNull()->comment('Other Names'),
             'PHONE_NUMBER' => $this->string(20)->comment('Phone Number'),
-            'ACCOUNT_STATUS' => $this->boolean()->defaultValue(0)->notNull()->comment('Account Status'),
+            'ACCOUNT_STATUS' => $this->string(10)->comment('Account Status'),
             'DATE_REGISTERED' => $this->dateTime()->comment('Date Registered'),
             'DATE_UPDATED' => $this->dateTime()->comment('Last Updated')
-        ],'ENGINE=InnoDB');
+        ], 'ENGINE=InnoDB');
     }
 
     /**
