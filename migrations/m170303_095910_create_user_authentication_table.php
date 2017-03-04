@@ -16,7 +16,8 @@ class m170303_095910_create_user_authentication_table extends Migration
             'AUTHENTICATION_ID' => $this->primaryKey(),
             'USER_ID' => $this->integer()->notNull(),
             'PASSWORD' => $this->string(120)->notNull()->comment('Password'),
-            'SALT' => $this->string(200)->notNull()->comment('Password Hash'),
+            'PASSWORD_RESET_TOKEN' => $this->string(120)->comment('Password Reset Token'),
+            'ACCOUNT_AUTH_KEY' => $this->string(120)->comment('Password Reset Token'),
             'CREATED' => $this->dateTime(),
             'UPDATED' => $this->dateTime()
         ],'ENGINE=InnoDB');
