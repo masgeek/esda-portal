@@ -14,17 +14,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'USER_ID')->textInput() ?>
 
-
-    <?= \kartik\file\FileInput::widget([
-        'model' => $model,
-        'attribute' => 'FILE_NAME[]',
-        'options' => ['multiple' => true],
+    <?= $form->field($model, 'FILE_NAME')->widget(\kartik\file\FileInput::className(), [
+        'options' => [
+            //'accept' => 'image/*',
+            'multiple' => true
+        ],
         'pluginOptions' => [
-            'uploadUrl' => \yii\helpers\Url::to(['//users/uploads/file-upload']),
+            'allowedFileExtensions' => ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'docx', 'rtf', 'odt'],
+            'maxFileCount' => 10,
+            'uploadAsync' => true,
+            'showUpload' => false,
             'uploadExtraData' => [
-                'USER_ID' => 20,
+                'USER_ID' => $model->USER_ID,
+                '_csrf' => Yii::$app->request->csrfToken
             ],
-            'maxFileCount' => 10
+            'uploadUrl' => \yii\helpers\Url::to(['//users/uploads/file-upload']),
         ]
     ]); ?>
 

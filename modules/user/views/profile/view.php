@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-profile-view">
     <p>
         <?= Html::a(Yii::t('app', 'Update Profile'), ['update', 'id' => $model->USER_ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Upload Documents'), ['//users/uploads/create', 'id' => $model->USER_ID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Upload Documents'), ['//users/uploads/create', 'user_id' => $model->USER_ID], ['class' => 'btn btn-primary']) ?>
         <!--?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->USER_ID], [
             'class' => 'btn btn-danger',
             'data' => [

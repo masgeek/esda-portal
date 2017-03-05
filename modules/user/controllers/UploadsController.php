@@ -8,6 +8,7 @@ use app\modules\user\search\UploadsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * UploadsController implements the CRUD actions for UserUploads model.
@@ -61,23 +62,73 @@ class UploadsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($user_id)
     {
         $model = new UploadsModel();
 
+        $model->USER_ID = $user_id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->UPLOAD_ID]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                'model' => $model
             ]);
         }
     }
 
     public function actionFileUpload()
     {
-        print_r(json_encode($_FILES));
+        $user_id = (Yii::$app->request->post('USER_ID'));
+
+        //print_r(json_encode($_FILES));
+        $path = '@app/useruploads';
+        $model = new UploadsModel();
+        if (Yii::$app->request->isPost) {
+            $model->imageFiles = UploadedFile::getInstances($model, 'FILE_NAME');
+            $image = $model->upload($user_id);
+            ///var_dump($image);
+        }
+        //echo $path;
         exit(0);
+    }
+
+    public function actionFileUploadOld()
+    {
+        $output = []; //empty if successfull
+        $model = new UploadsModel();
+        $post = ['Images' => Yii::$app->request->post()];
+        $model->load($post);
+
+        $image = $model->upload();
+
+        var_dump($image);
+        die;
+        // upload only if valid uploaded file instance found
+        if ($image !== false) {
+            $imageUrl = $model->getImageUrl();
+            $model->FILE_PATH = $imageUrl;
+            if ($model->save()) {
+                if ($image !== false) {
+                    $save_path = $model->getImageFile();
+                    $image->saveAs($save_path);
+                }
+                //return $this->redirect(['view', 'id' => $model->IMAGE_ID]);
+            } else {
+                // error in saving model
+                $errors = '';
+                foreach ($model->getErrors() as $key => $value) {
+                    //$errors .= '<a class="list-group-item" href="#">';
+                    $errors .= $value[0] . '<br/>';
+                    //$errors .= '</a>';
+                }
+                //$errors .= '</div>';
+                $output = ['error' => $errors];
+            }
+        } else {
+            $output = ['error' => 'No files were processed.'];
+        }
+// return a json encoded response for plugin to process successfully
+        echo json_encode($output);
     }
 
     /**
