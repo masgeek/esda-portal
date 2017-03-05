@@ -21,5 +21,8 @@
     "vendor/bower",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+
+  }
 }

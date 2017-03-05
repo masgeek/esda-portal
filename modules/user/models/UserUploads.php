@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $UPLOAD_ID
  * @property integer $USER_ID
+ * @property string $FILE_NAME
  * @property string $FILE_PATH
  * @property string $COMMENTS
  * @property integer $PUBLICLY_AVAILABLE
@@ -38,7 +39,7 @@ class UserUploads extends \yii\db\ActiveRecord
             [['USER_ID', 'PUBLICLY_AVAILABLE', 'DELETED'], 'integer'],
             [['COMMENTS'], 'string'],
             [['DATE_UPLOADED', 'UPDATED'], 'safe'],
-            [['FILE_PATH'], 'string', 'max' => 200],
+            [['FILE_NAME', 'FILE_PATH'], 'string', 'max' => 200],
             [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => UserProfile::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
         ];
     }
@@ -51,6 +52,7 @@ class UserUploads extends \yii\db\ActiveRecord
         return [
             'UPLOAD_ID' => Yii::t('app', 'Upload  ID'),
             'USER_ID' => Yii::t('app', 'User  ID'),
+            'FILE_NAME' => Yii::t('app', 'File Name'),
             'FILE_PATH' => Yii::t('app', 'Document Path'),
             'COMMENTS' => Yii::t('app', 'Comments'),
             'PUBLICLY_AVAILABLE' => Yii::t('app', 'Publicly Available'),

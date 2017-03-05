@@ -15,6 +15,7 @@ class m170304_100643_create_user_uploads_table extends Migration
         $this->createTable('user_uploads', [
             'UPLOAD_ID' => $this->primaryKey(),
             'USER_ID' => $this->integer()->notNull(),
+            'FILE_NAME' => $this->string(200)->comment('File Name'),
             'FILE_PATH' => $this->string(200)->comment('Document Path'),
             'COMMENTS' => $this->text()->comment('Comments'),
             'PUBLICLY_AVAILABLE' => $this->boolean()->defaultValue(1)->comment('Publicly Available'),

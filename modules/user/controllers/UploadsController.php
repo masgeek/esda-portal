@@ -74,6 +74,12 @@ class UploadsController extends Controller
         }
     }
 
+    public function actionFileUpload()
+    {
+        print_r(json_encode($_FILES));
+        exit(0);
+    }
+
     /**
      * Updates an existing UserUploads model.
      * If update is successful, the browser will be redirected to the 'view' page.

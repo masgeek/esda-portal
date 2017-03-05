@@ -14,6 +14,20 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'USER_ID')->textInput() ?>
 
+
+    <?= \kartik\file\FileInput::widget([
+        'model' => $model,
+        'attribute' => 'FILE_NAME[]',
+        'options' => ['multiple' => true],
+        'pluginOptions' => [
+            'uploadUrl' => \yii\helpers\Url::to(['//users/uploads/file-upload']),
+            'uploadExtraData' => [
+                'USER_ID' => 20,
+            ],
+            'maxFileCount' => 10
+        ]
+    ]); ?>
+
     <?= $form->field($model, 'FILE_PATH')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'COMMENTS')->textarea(['rows' => 6]) ?>

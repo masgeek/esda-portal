@@ -30,9 +30,6 @@ use yii\widgets\ActiveForm;
                 'allowClear' => false
             ],
         ]); ?>
-
-        <?= $form->field($model, 'CHANGE_PASSWORD')->hint('Click to change password')->checkbox(['checked' => false]); ?>
-
         <div class="row toggle-field" style="display: none;">
             <?= Html::textInput('HASH_PASSWORD', $model->userAuthentications[0]->PASSWORD, ['id' => 'password', 'class' => 'form-control hiddens', 'readonly' => true]) ?>
             <div class="col-md-6">
