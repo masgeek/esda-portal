@@ -2,7 +2,10 @@
 
 namespace app\modules\user\models;
 
+use app\components\AccountStates;
 use Yii;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "{{%user_profile}}".
@@ -20,7 +23,7 @@ use Yii;
  * @property UserAuthentication[] $userAuthentications
  * @property UserUploads[] $userUploads
  */
-class UserProfile extends \yii\db\ActiveRecord
+class UserProfile extends ActiveRecord
 {
 
     const SCENARIO_SIGNUP = 'signup';
@@ -30,6 +33,7 @@ class UserProfile extends \yii\db\ActiveRecord
     public $PASSWORD;
     public $REPEAT_PASSWORD;
     public $CHANGE_PASSWORD;
+
 
     /**
      * @inheritdoc
@@ -46,7 +50,7 @@ class UserProfile extends \yii\db\ActiveRecord
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_SIGNUP] = ['USER_NAME', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD'];//Scenario Values Only Accepted
+        $scenarios[self::SCENARIO_SIGNUP] = ['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD'];//Scenario Values Only Accepted
         $scenarios[self::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD', 'PHONE_NO', 'TIMEZONE', 'COUNTRY', 'CHANGE_PASSWORD'];//Scenario Values Only Accepted
         return $scenarios;
     }
@@ -60,7 +64,7 @@ class UserProfile extends \yii\db\ActiveRecord
             [['SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD'], 'required', 'on' => [self::SCENARIO_SIGNUP, self::SCENARIO_UPDATE]],
 
             [['USER_NAME', 'EMAIL_ADDRESS', 'SURNAME', 'OTHER_NAMES'], 'required'],
-            [['ACCOUNT_STATUS'], 'string', 'max' => 10],
+            [['ACCOUNT_STATUS'], 'string', 'max' => 15],
             [['DATE_REGISTERED', 'DATE_UPDATED'], 'safe'],
             [['USER_NAME', 'SURNAME'], 'string', 'max' => 10],
             //[['EMAIL_ADDRESS'], 'string', 'max' => 15],
@@ -95,6 +99,27 @@ class UserProfile extends \yii\db\ActiveRecord
             'REPEAT_PASSWORD' => Yii::t('app', 'Repeat Password'),
             'CHANGE_PASSWORD' => Yii::t('app', 'Change Password'),
         ];
+    }
+
+
+    public function beforeSave($insert)
+    {
+        $date = new Expression('NOW()');
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+                $this->DATE_REGISTERED = $date;
+                $this->ACCOUNT_STATUS = AccountStates::NOT_ACTIVATED;
+
+                $this->PASSWORD = sha1($this->PASSWORD); //hash the user password
+            }
+            if ($this->CHANGE_PASSWORD == 'true' || $this->CHANGE_PASSWORD == 1) { //when checkbox is checked to indicate password changed
+                //it is in update mode check if password change was requested
+                $this->PASSWORD = sha1($this->PASSWORD); //hash the user password
+            }
+            $this->DATE_UPDATED = $date;
+            return true;
+        }
+        return false;
     }
 
     /**

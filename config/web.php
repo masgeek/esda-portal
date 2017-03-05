@@ -7,7 +7,7 @@ $config = [
     'name' => YII_DEBUG ? 'ESDA PORTAL DEV' : 'ESDA PORTAL',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language'=>'en',
+    'language'=>'fr',
     'aliases' => [
         '@bower' => 'vendor/bower-asset',
     ],

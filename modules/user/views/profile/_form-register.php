@@ -14,12 +14,22 @@ use yii\widgets\ActiveForm;
 
     <div class="row">
         <div class="col-md-6">
+            <?= $form->field($model, 'SURNAME')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'OTHER_NAMES')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
             <?= $form->field($model, 'USER_NAME')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-6">
             <?= $form->field($model, 'EMAIL_ADDRESS')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6">
             <?= $form->field($model, 'PASSWORD')->passwordInput(['value' => null, 'maxlength' => true, 'placeholder' => 'Enter password']) ?>
