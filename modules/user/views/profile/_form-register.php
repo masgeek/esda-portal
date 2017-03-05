@@ -22,12 +22,23 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <?= $form->field($model, 'USER_NAME')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <?= $form->field($model, 'EMAIL_ADDRESS')->textInput(['maxlength' => true]) ?>
         </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'INSTITUTION_ID')->widget(kartik\select2\Select2::classname(), [
+                'data' => \app\modules\user\models\InstitutionsModel::GetInstitutionList(),
+                //'language' => 'en',
+                'options' => ['placeholder' => 'Select Institution ...'],
+                'pluginOptions' => [
+                    'allowClear' => false
+                ],
+            ]); ?>
+        </div>
+
     </div>
 
     <div class="row">
