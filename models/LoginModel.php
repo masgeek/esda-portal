@@ -9,6 +9,7 @@
 namespace app\models;
 
 
+use app\components\AccountStates;
 use app\modules\user\models\UserAuthentication;
 use app\modules\user\models\UserProfile;
 use yii\web\IdentityInterface;
@@ -16,9 +17,9 @@ use yii\web\IdentityInterface;
 class LoginModel extends UserAuthentication implements IdentityInterface
 {
     public $LOGIN_ID;
-    public $EMAIL_ADDRESS;
-    public $ACCOUNT_AUTH_KEY;
-    public $PASSWORD_RESET_TOKEN;
+    //public $EMAIL_ADDRESS;
+    //public $ACCOUNT_AUTH_KEY;
+    //public $PASSWORD_RESET_TOKEN;
     public $passwordHashCost = 13;
 
     public function rules()
@@ -70,13 +71,20 @@ class LoginModel extends UserAuthentication implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        $username = null;
-        $userModel = UserProfile::findOne(['USER_NAME' => $username]);
-        if ($userModel != null) {
-            $username = static::findOne(['USER_ID' => $userModel->USER_ID]);
-        }
+        /* @var $userModel UserProfile */
 
-        return $username;
+        $account_found = null;
+        //$userModel = UserProfile::findOne(['USER_NAME' => $username, 'EMAIL_ADDRESS'=>$username]);
+        $userModel = UserProfile::find()
+            ->select(['USER_ID', 'USER_NAME'])//select only specific fields
+            ->where(['USER_NAME' => $username])
+            ->orWhere(['EMAIL_ADDRESS' => $username])
+            //->andWhere(['ACCOUNT_STATUS' => AccountStates::NOT_ACTIVATED])
+            ->one();
+        if ($userModel != null) {
+            $account_found = static::findOne(['USER_ID' => $userModel->USER_ID]);
+        }
+        return $account_found;
     }
 
     /**
@@ -124,5 +132,21 @@ class LoginModel extends UserAuthentication implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->PASSWORD_RESET_TOKEN = null;
+    }
+
+    //fields to return common stuff
+    public function getUsername()
+    {
+        return $this->uSER->USER_NAME;
+    }
+
+    public function getFullNames()
+    {
+        return $this->uSER->SURNAME;
+    }
+
+    public function getEmailAddress()
+    {
+        return $this->uSER->EMAIL_ADDRESS;
     }
 }
