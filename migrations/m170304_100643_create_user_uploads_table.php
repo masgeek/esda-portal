@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `user_uploads`.
  */
-class m170303_100643_create_user_uploads_table extends Migration
+class m170304_100643_create_user_uploads_table extends Migration
 {
     /**
      * @inheritdoc

@@ -10,7 +10,7 @@ class m170303_095910_create_user_authentication_table extends Migration
     /**
      * @inheritdoc
      */
-    public function up()
+    public function safeUp()
     {
         $this->createTable('user_authentication', [
             'AUTHENTICATION_ID' => $this->primaryKey(),
@@ -29,7 +29,7 @@ class m170303_095910_create_user_authentication_table extends Migration
     /**
      * @inheritdoc
      */
-    public function down()
+    public function safeDown()
     {
         $this->dropTable('user_authentication');
     }

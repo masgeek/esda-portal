@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'USER_NAME')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'USER_NAME')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <?= $form->field($model, 'EMAIL_ADDRESS')->textInput(['maxlength' => true]) ?>
 
@@ -21,12 +21,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'OTHER_NAMES')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'PHONE_NUMBER')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ACCOUNT_STATUS')->textInput() ?>
-
-    <?= $form->field($model, 'DATE_REGISTERED')->textInput() ?>
-
-    <?= $form->field($model, 'DATE_UPDATED')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?> </div>

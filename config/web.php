@@ -85,6 +85,7 @@ $config = [
                 //custom rules
                 '/' => 'site',
                 'account' => 'users/profile',
+                'update' => 'users/profile/update',
                 'register' => 'users/profile/create',
                 'recover' => 'users/default/recover',
             ],
