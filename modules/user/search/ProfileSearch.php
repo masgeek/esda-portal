@@ -5,12 +5,12 @@ namespace app\modules\user\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\user\models\UserProfile;
+use app\modules\user\models\ProfileModel;
 
 /**
  * ProfileSearch represents the model behind the search form about `app\modules\user\models\UserProfile`.
  */
-class ProfileSearch extends UserProfile
+class ProfileSearch extends ProfileModel
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class ProfileSearch extends UserProfile
      */
     public function search($params)
     {
-        $query = UserProfile::find();
+        $query = ProfileModel::find();
 
         // add conditions that should always apply here
 

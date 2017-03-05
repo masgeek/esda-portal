@@ -2,9 +2,9 @@
 
 namespace app\modules\user\controllers;
 
-use app\modules\user\models\UserAuthentication;
+use app\modules\user\models\AuthenticationModel;
 use Yii;
-use app\modules\user\models\UserProfile;
+use app\modules\user\models\ProfileModel;
 use app\modules\user\search\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -64,15 +64,15 @@ class ProfileController extends Controller
      */
     public function actionCreate()
     {
-        $model = new UserProfile();
-        $model->scenario = UserProfile::SCENARIO_SIGNUP;
+        $model = new ProfileModel();
+        $model->scenario = ProfileModel::SCENARIO_SIGNUP;
 
         $db = \Yii::$app->db;
         $transaction = $db->beginTransaction();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //now insert the login credentials into teh authentication model
-            $authModel = new UserAuthentication();
+            $authModel = new AuthenticationModel();
             $authModel->isNewRecord = true;
 
             $authModel->USER_ID = $model->USER_ID;
@@ -129,12 +129,12 @@ class ProfileController extends Controller
      * Finds the UserProfile model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return UserProfile the loaded model
+     * @return ProfileModel the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UserProfile::findOne($id)) !== null) {
+        if (($model = ProfileModel::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

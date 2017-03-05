@@ -1,8 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\modules\user\models;
 
 use Yii;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "{{%user_authentication}}".
@@ -15,9 +16,9 @@ use Yii;
  * @property string $CREATED
  * @property string $UPDATED
  *
- * @property UserProfile $uSER
+ * @property ProfileModel $uSER
  */
-class UserAuthentication extends \yii\db\ActiveRecord
+class AuthenticationModel extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -37,7 +38,7 @@ class UserAuthentication extends \yii\db\ActiveRecord
             [['USER_ID'], 'integer'],
             [['CREATED', 'UPDATED'], 'safe'],
             [['PASSWORD', 'PASSWORD_RESET_TOKEN', 'ACCOUNT_AUTH_KEY'], 'string', 'max' => 120],
-            [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => UserProfile::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
+            [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ProfileModel::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
         ];
     }
 
@@ -57,11 +58,23 @@ class UserAuthentication extends \yii\db\ActiveRecord
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        $date = new Expression('NOW()');
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+                $this->CREATED = $date;
+            }
+            $this->UPDATED = $date;
+            return true;
+        }
+        return false;
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getUSER()
     {
-        return $this->hasOne(UserProfile::className(), ['USER_ID' => 'USER_ID']);
+        return $this->hasOne(ProfileModel::className(), ['USER_ID' => 'USER_ID']);
     }
 }

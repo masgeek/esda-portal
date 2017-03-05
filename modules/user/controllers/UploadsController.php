@@ -3,7 +3,7 @@
 namespace app\modules\user\controllers;
 
 use Yii;
-use app\modules\user\models\UserUploads;
+use app\modules\user\models\UploadsModel;
 use app\modules\user\search\UploadsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,7 +63,7 @@ class UploadsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new UserUploads();
+        $model = new UploadsModel();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->UPLOAD_ID]);
@@ -110,12 +110,12 @@ class UploadsController extends Controller
      * Finds the UserUploads model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return UserUploads the loaded model
+     * @return UploadsModel the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UserUploads::findOne($id)) !== null) {
+        if (($model = UploadsModel::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

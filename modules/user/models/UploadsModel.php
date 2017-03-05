@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\modules\user\models;
 
 use Yii;
 
@@ -16,9 +16,9 @@ use Yii;
  * @property string $UPDATED
  * @property integer $DELETED
  *
- * @property UserProfile $uSER
+ * @property ProfileModel $uSER
  */
-class UserUploads extends \yii\db\ActiveRecord
+class UploadsModel extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -39,7 +39,7 @@ class UserUploads extends \yii\db\ActiveRecord
             [['COMMENTS'], 'string'],
             [['DATE_UPLOADED', 'UPDATED'], 'safe'],
             [['FILE_PATH'], 'string', 'max' => 200],
-            [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => UserProfile::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
+            [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => ProfileModel::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
         ];
     }
 
@@ -65,6 +65,6 @@ class UserUploads extends \yii\db\ActiveRecord
      */
     public function getUSER()
     {
-        return $this->hasOne(UserProfile::className(), ['USER_ID' => 'USER_ID']);
+        return $this->hasOne(ProfileModel::className(), ['USER_ID' => 'USER_ID']);
     }
 }

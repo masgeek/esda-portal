@@ -3,7 +3,6 @@
 namespace app\modules\user\models;
 
 use Yii;
-use yii\db\Expression;
 
 /**
  * This is the model class for table "{{%user_authentication}}".
@@ -58,18 +57,6 @@ class UserAuthentication extends \yii\db\ActiveRecord
         ];
     }
 
-    public function beforeSave($insert)
-    {
-        $date = new Expression('NOW()');
-        if (parent::beforeSave($insert)) {
-            if ($this->isNewRecord) {
-                $this->CREATED = $date;
-            }
-            $this->UPDATED = $date;
-            return true;
-        }
-        return false;
-    }
     /**
      * @return \yii\db\ActiveQuery
      */

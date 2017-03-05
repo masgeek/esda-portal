@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\user\models\UserProfile */
+/* @var $model app\modules\user\models\ProfileModel */
 
 $this->title = Yii::t('app', 'Register');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Profiles'), 'url' => ['index']];

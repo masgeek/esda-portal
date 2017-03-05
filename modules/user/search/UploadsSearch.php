@@ -5,12 +5,12 @@ namespace app\modules\user\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\user\models\UserUploads;
+use app\modules\user\models\UploadsModel;
 
 /**
  * UploadsSearch represents the model behind the search form about `app\modules\user\models\UserUploads`.
  */
-class UploadsSearch extends UserUploads
+class UploadsSearch extends UploadsModel
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class UploadsSearch extends UserUploads
      */
     public function search($params)
     {
-        $query = UserUploads::find();
+        $query = UploadsModel::find();
 
         // add conditions that should always apply here
 

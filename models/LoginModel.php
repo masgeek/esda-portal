@@ -10,11 +10,11 @@ namespace app\models;
 
 
 use app\components\AccountStates;
-use app\modules\user\models\UserAuthentication;
-use app\modules\user\models\UserProfile;
+use app\modules\user\models\AuthenticationModel;
+use app\modules\user\models\ProfileModel;
 use yii\web\IdentityInterface;
 
-class LoginModel extends UserAuthentication implements IdentityInterface
+class LoginModel extends AuthenticationModel implements IdentityInterface
 {
     //public $LOGIN_ID;
     //public $EMAIL_ADDRESS;
@@ -71,11 +71,11 @@ class LoginModel extends UserAuthentication implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        /* @var $userModel UserProfile */
+        /* @var $userModel ProfileModel */
 
         $account_found = null;
         //$userModel = UserProfile::findOne(['USER_NAME' => $username, 'EMAIL_ADDRESS'=>$username]);
-        $userModel = UserProfile::find()
+        $userModel = ProfileModel::find()
             ->select(['USER_ID', 'USER_NAME'])//select only specific fields
             ->where(['USER_NAME' => $username])
             ->orWhere(['EMAIL_ADDRESS' => $username])
