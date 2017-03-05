@@ -12,7 +12,11 @@ class m170301_141809_create_institutions_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('institutions', [
+        $table_name = 'institutions';
+
+        $faker = Faker\Factory::create();
+
+        $this->createTable($table_name, [
             'INSTITUTION_ID' => $this->primaryKey(),
             'INSTITUTION_NAME' => $this->string(150)->notNull()->comment('Institution Name'),
             'CREATED' => $this->dateTime(),
@@ -20,10 +24,17 @@ class m170301_141809_create_institutions_table extends Migration
         ], 'ENGINE=InnoDB');
 
 
-        $this->insert('institutions', ['INSTITUTION_NAME' => 'University of Nairobi',]);
-        $this->insert('institutions', ['INSTITUTION_NAME' => 'Kenyatta University',]);
-        $this->insert('institutions', ['INSTITUTION_NAME' => 'Rhodes University',]);
-        $this->insert('institutions', ['INSTITUTION_NAME' => 'Makerere University',]);
+        /* sample data */
+
+        if (YII_DEBUG) {
+            for ($x = 0; $x <= 20; $x++) {
+                $this->insert('institutions', [
+                    'INSTITUTION_NAME' => ucfirst(strtolower($faker->company)),
+                    'CREATED' => $faker->dateTime->format('Y-m-d H:i:s'),
+                    'UPDATED' => $faker->dateTime->format('Y-m-d H:i:s')
+                ]);
+            }
+        }
     }
 
     /**
