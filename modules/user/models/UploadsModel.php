@@ -12,6 +12,7 @@ class UploadsModel extends UserUploads
 {
 
     public $imageFiles;
+    public $FILE_SELECTOR;
 
     public function rules()
     {

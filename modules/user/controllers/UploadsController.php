@@ -78,58 +78,24 @@ class UploadsController extends Controller
 
     public function actionFileUpload()
     {
+        $output = []; //empty if successfull
         $user_id = (Yii::$app->request->post('USER_ID'));
 
-        //print_r(json_encode($_FILES));
-        $path = '@app/useruploads';
         $model = new UploadsModel();
         if (Yii::$app->request->isPost) {
-            $model->imageFiles = UploadedFile::getInstances($model, 'FILE_NAME');
-            $image = $model->upload($user_id);
-            ///var_dump($image);
-        }
-        //echo $path;
-        exit(0);
-    }
-
-    public function actionFileUploadOld()
-    {
-        $output = []; //empty if successfull
-        $model = new UploadsModel();
-        $post = ['Images' => Yii::$app->request->post()];
-        $model->load($post);
-
-        $image = $model->upload();
-
-        var_dump($image);
-        die;
-        // upload only if valid uploaded file instance found
-        if ($image !== false) {
-            $imageUrl = $model->getImageUrl();
-            $model->FILE_PATH = $imageUrl;
-            if ($model->save()) {
-                if ($image !== false) {
-                    $save_path = $model->getImageFile();
-                    $image->saveAs($save_path);
-                }
-                //return $this->redirect(['view', 'id' => $model->IMAGE_ID]);
-            } else {
-                // error in saving model
-                $errors = '';
-                foreach ($model->getErrors() as $key => $value) {
-                    //$errors .= '<a class="list-group-item" href="#">';
-                    $errors .= $value[0] . '<br/>';
-                    //$errors .= '</a>';
-                }
-                //$errors .= '</div>';
-                $output = ['error' => $errors];
+            $model->imageFiles = UploadedFile::getInstances($model, 'FILE_SELECTOR');
+            if (!$model->upload($user_id)) {
+                $output = ['error' => 'Unable to upload file. please try again'];
+            }else{
+                $output = ['path' => 6];
             }
         } else {
             $output = ['error' => 'No files were processed.'];
         }
-// return a json encoded response for plugin to process successfully
-        echo json_encode($output);
+        // return a json encoded response for plugin to process successfully
+        return json_encode($output);
     }
+
 
     /**
      * Updates an existing UserUploads model.
