@@ -31,6 +31,7 @@ class UserProfile extends ActiveRecord
 
 
     public $PASSWORD;
+    public $ACCOUNT_AUTH_KEY;
     public $REPEAT_PASSWORD;
     public $CHANGE_PASSWORD;
 
@@ -110,6 +111,9 @@ class UserProfile extends ActiveRecord
                 $this->DATE_REGISTERED = $date;
                 $this->ACCOUNT_STATUS = AccountStates::NOT_ACTIVATED;
 
+
+                //these belong to another model
+                $this->ACCOUNT_AUTH_KEY = \Yii::$app->security->generateRandomString();
                 $this->PASSWORD = sha1($this->PASSWORD); //hash the user password
             }
             if ($this->CHANGE_PASSWORD == 'true' || $this->CHANGE_PASSWORD == 1) { //when checkbox is checked to indicate password changed

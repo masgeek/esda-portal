@@ -2,6 +2,7 @@
 
 namespace app\modules\user\controllers;
 
+use app\modules\user\models\UserAuthentication;
 use Yii;
 use app\modules\user\models\UserProfile;
 use app\modules\user\search\ProfileSearch;
@@ -66,14 +67,30 @@ class ProfileController extends Controller
         $model = new UserProfile();
         $model->scenario = UserProfile::SCENARIO_SIGNUP;
 
+        $db = \Yii::$app->db;
+        $transaction = $db->beginTransaction();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $model->PASSWORD;
-            $this->redirect(['view', 'id' => $model->USER_ID]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            //now insert the login credentials into teh authentication model
+            $authModel = new UserAuthentication();
+            $authModel->isNewRecord = true;
+
+            $authModel->USER_ID = $model->USER_ID;
+            $authModel->PASSWORD = $model->PASSWORD;
+            $authModel->ACCOUNT_AUTH_KEY = $model->ACCOUNT_AUTH_KEY;
+            if ($authModel->save()) {
+                //commit transaction
+                $transaction->commit();
+                $this->redirect(['view', 'id' => $model->USER_ID]);
+            } else {
+                //roll back the transaction
+                $model->PASSWORD = null; //clear the password field
+                $model->REPEAT_PASSWORD = null; //clear the repeat password field
+                $model->ACCOUNT_AUTH_KEY = null;
+                $transaction->rollback();
+            }
         }
+        return $this->render('create', ['model' => $model,]);
     }
 
     /**

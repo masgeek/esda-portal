@@ -3,6 +3,7 @@
 namespace app\modules\user\models;
 
 use Yii;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "{{%user_authentication}}".
@@ -10,7 +11,8 @@ use Yii;
  * @property integer $AUTHENTICATION_ID
  * @property integer $USER_ID
  * @property string $PASSWORD
- * @property string $SALT
+ * @property string $PASSWORD_RESET_TOKEN
+ * @property string $ACCOUNT_AUTH_KEY
  * @property string $CREATED
  * @property string $UPDATED
  *
@@ -32,11 +34,10 @@ class UserAuthentication extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_ID', 'PASSWORD', 'SALT'], 'required'],
+            [['USER_ID', 'PASSWORD', 'ACCOUNT_AUTH_KEY'], 'required'],
             [['USER_ID'], 'integer'],
             [['CREATED', 'UPDATED'], 'safe'],
-            [['PASSWORD'], 'string', 'max' => 120],
-            [['SALT'], 'string', 'max' => 200],
+            [['PASSWORD', 'PASSWORD_RESET_TOKEN', 'ACCOUNT_AUTH_KEY'], 'string', 'max' => 120],
             [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => UserProfile::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
         ];
     }
@@ -50,12 +51,25 @@ class UserAuthentication extends \yii\db\ActiveRecord
             'AUTHENTICATION_ID' => Yii::t('app', 'Authentication  ID'),
             'USER_ID' => Yii::t('app', 'User  ID'),
             'PASSWORD' => Yii::t('app', 'Password'),
-            'SALT' => Yii::t('app', 'Password Hash'),
+            'PASSWORD_RESET_TOKEN' => Yii::t('app', 'Password Reset Token'),
+            'ACCOUNT_AUTH_KEY' => Yii::t('app', 'Password Reset Token'),
             'CREATED' => Yii::t('app', 'Created'),
             'UPDATED' => Yii::t('app', 'Updated'),
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        $date = new Expression('NOW()');
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord) {
+                $this->CREATED = $date;
+            }
+            $this->UPDATED = $date;
+            return true;
+        }
+        return false;
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
