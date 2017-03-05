@@ -22,22 +22,12 @@ class BowerAsset extends AssetBundle
     );
 
     public $css = [
-        //'animate.css/animate.min.css',
-        'tingle/dist/tingle.css'
     ];
     public $publishOptions = [
         //'forceCopy'=>true,
     ];
 
     public $js = [
-        //'timer.jquery/dist/timer.jquery.js'
-        //'countdown360/dist/jquery.countdown360.js'
-        'velocity/velocity.js',
-        //'velocity/velocity.ui.js',
-        //'//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js',
-        'tingle/dist/tingle.js',
-        //'jquery-lazyload-any/src/jquery.lazyload-any.js'
-        'numeral/src/numeral.js'
     ];
 
     public $depends = [

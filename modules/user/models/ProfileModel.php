@@ -33,7 +33,7 @@ class ProfileModel extends UserProfile
     public $PASSWORD;
     public $ACCOUNT_AUTH_KEY;
     public $REPEAT_PASSWORD;
-    public $HAS_PASSWORD;
+    public $HASH_PASSWORD;
     public $CHANGE_PASSWORD;
 
     /**
@@ -44,7 +44,7 @@ class ProfileModel extends UserProfile
     {
         $scenarios = parent::scenarios();
         $scenarios[self::SCENARIO_SIGNUP] = ['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'INSTITUTION_ID', 'PASSWORD', 'REPEAT_PASSWORD'];//Scenario Values Only Accepted
-        $scenarios[self::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD', 'PHONE_NO', 'TIMEZONE', 'COUNTRY', 'CHANGE_PASSWORD'];//Scenario Values Only Accepted
+        $scenarios[self::SCENARIO_UPDATE] = ['SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'PASSWORD', 'REPEAT_PASSWORD', 'PHONE_NUMBER', 'TIMEZONE', 'COUNTRY', 'CHANGE_PASSWORD'];//Scenario Values Only Accepted
         return $scenarios;
     }
 
@@ -55,7 +55,7 @@ class ProfileModel extends UserProfile
     {
         return [
             [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'INSTITUTION_ID', 'PASSWORD', 'REPEAT_PASSWORD'], 'required', 'on' => [self::SCENARIO_SIGNUP]],
-            [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'INSTITUTION_ID'], 'required', 'on' => [self::SCENARIO_UPDATE]],
+            [['USER_NAME', 'SURNAME', 'OTHER_NAMES', 'EMAIL_ADDRESS', 'INSTITUTION_ID', 'PHONE_NUMBER'], 'required', 'on' => [self::SCENARIO_UPDATE]],
             [['EMAIL_ADDRESS'], 'email'],
             ['REPEAT_PASSWORD', 'compare', 'compareAttribute' => 'PASSWORD', 'skipOnEmpty' => false, 'message' => 'Passwords don\'t match'], //password confirmation rule
         ];
