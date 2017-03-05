@@ -18,18 +18,18 @@ use yii\bootstrap\ActiveForm;
 ]); ?>
 
     <div class="col-md-12">
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Email Address'])->label('')->hint('Enter email address') ?>
+        <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('')->hint('Enter username/email address') ?>
     </div>
 
 
     <div class="col-md-12">
-        <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password'])->label('')->hint('Enter Password') ?>
+        <?= $form->field($model, 'password')->passwordInput([])->label('')->hint('Enter Password') ?>
     </div>
 
-    <!--= $form->field($model, 'rememberMe')->checkbox([
+    <?= $form->field($model, 'rememberMe')->checkbox([
 		'checked' => false, 'value' => 0,
 		'template' => "<div class=\"col-md-12\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-	]) ?-->
+	]) ?>
     <div class="row">
         <div class="col-md-6">
             <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>

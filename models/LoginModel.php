@@ -16,7 +16,7 @@ use yii\web\IdentityInterface;
 
 class LoginModel extends UserAuthentication implements IdentityInterface
 {
-    public $LOGIN_ID;
+    //public $LOGIN_ID;
     //public $EMAIL_ADDRESS;
     //public $ACCOUNT_AUTH_KEY;
     //public $PASSWORD_RESET_TOKEN;
@@ -109,12 +109,12 @@ class LoginModel extends UserAuthentication implements IdentityInterface
 
     public function setPassword($password)
     {
-        $this->LOGIN_ID = Security::generatePasswordHash($password);
+        $this->PASSWORD = Security::generatePasswordHash($password);
     }
 
     public function getPassword()
     {
-        return $this->LOGIN_ID;
+        return $this->AUTHENTICATION_ID;
     }
 
 
