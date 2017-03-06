@@ -14,8 +14,16 @@ class m170301_125627_create_membership_type_table extends Migration
     {
         $this->createTable('membership_type', [
             'MEMBERSHIP_TYPE_ID' => $this->primaryKey(),
-            'MEMBERSHIP_NAME'=>$this->string(25)->notNull()->comment('Membership Name'),
-        ]);
+            'MEMBERSHIP_NAME' => $this->string(25)->notNull()->comment('Membership Name'),
+        ], 'ENGINE=InnoDB');
+
+        //add teh default data
+        $this->insert('membership_type', ['MEMBERSHIP_NAME' =>'RESEARCHERS']);
+        $this->insert('membership_type', ['MEMBERSHIP_NAME' =>'ENTREPRENEURS']);
+        $this->insert('membership_type', ['MEMBERSHIP_NAME' =>'INCUBATORS']);
+        $this->insert('membership_type', ['MEMBERSHIP_NAME' =>'RESOURCE PERSONNEL']);
+        $this->insert('membership_type', ['MEMBERSHIP_NAME' =>'MENTORS']);
+        $this->insert('membership_type', ['MEMBERSHIP_NAME' =>'OTHERS']);
     }
 
     /**
