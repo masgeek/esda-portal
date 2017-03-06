@@ -13,7 +13,8 @@ class m170301_125627_create_membership_type_table extends Migration
     public function up()
     {
         $this->createTable('membership_type', [
-            'id' => $this->primaryKey(),
+            'MEMBERSHIP_TYPE_ID' => $this->primaryKey(),
+            'MEMBERSHIP_NAME'=>$this->string(25)->notNull()->comment('Membership Name'),
         ]);
     }
 
