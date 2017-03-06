@@ -18,7 +18,7 @@
         <p><?= Yii::$app->user->isGuest ?
                 \yii\helpers\Html::a(Yii::t('app', 'Register'), ['//register'], ['class' => 'btn btn-warning btn-block'])
                 :
-                \yii\helpers\Html::a(Yii::t('app', 'Public Documents'), ['//public-docs'], ['class' => 'btn btn-primary']) ?></p>
+                \yii\helpers\Html::a(Yii::t('app', 'Public Documents'), ['//public-docs'], ['class' => 'btn btn-success']) ?></p>
     </div>
 
     <div class="body-content">
