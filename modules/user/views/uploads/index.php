@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\user\search\UploadsSearch */
@@ -20,15 +21,29 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'UPLOAD_ID',
-            'USER_ID',
-            'FILE_PATH',
+            [
+                'header' => Yii::t('app', 'Owner Names'),
+                'attribute' => 'USER_ID',
+                'value' => function ($data) {
+                    /* @var $data app\modules\user\search\UploadsSearch */
+                    return $data->uSER->SURNAME . ' ' . $data->uSER->OTHER_NAMES;
+                }
+            ],
+            [
+                'attribute' => 'FILE_PATH',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    /* @var $data app\modules\user\search\UploadsSearch */
+                    $file_link = '@web' . $data->FILE_PATH;
+                    return Html::a($data->FILE_NAME, $file_link);
+                },
+                'filter' => false
+            ],
             'COMMENTS:ntext',
-            'PUBLICLY_AVAILABLE',
+            'PUBLICLY_AVAILABLE:boolean',
             // 'DATE_UPLOADED',
             // 'UPDATED',
             // 'DELETED',

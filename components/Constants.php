@@ -19,8 +19,8 @@ class Constants
     /**
      * Indicates if a file is private or public
      */
-    const FILE_IS_PRIVATE = 1;
-    const FILE_IS_NOT_PRIVATE = 0;
+    const FILE_IS_PUBLIC = 1;
+    const FILE_IS_NOT_PUBLIC = 0;
 
     //Model SCenarios
     const SCENARIO_INSERT = 'insert';

@@ -53,8 +53,8 @@ $user_id = Yii::$app->user->id;
     <?= $form->field($model, 'COMMENTS')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'PUBLICLY_AVAILABLE')->dropDownList([
-        \app\components\Constants::FILE_IS_PRIVATE => 'Private',
-        \app\components\Constants::FILE_IS_NOT_PRIVATE => 'Public',
+        \app\components\Constants::FILE_IS_NOT_PUBLIC => 'Private',
+        \app\components\Constants::FILE_IS_PUBLIC => 'Public',
     ]) ?>
 
     <div class="form-group">

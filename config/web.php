@@ -13,6 +13,9 @@ $config = [
     ],
     /* Modules */
     'modules' => [
+        'gridview' => [
+            'class' => 'kartik\grid\Module'
+        ],
         'users' => [
             'class' => 'app\modules\user\users',
             'defaultRoute' => 'profile', //default controller
@@ -90,6 +93,8 @@ $config = [
                 'register' => 'users/profile/create',
                 'recover' => 'users/default/recover',
                 'uploads' => 'users/uploads/create',
+                'my-uploads' => '/users/uploads/index',
+
             ],
         ],
 
