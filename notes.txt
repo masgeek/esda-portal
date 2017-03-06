@@ -1,0 +1,3 @@
+https://code.tutsplus.com/tutorials/how-to-program-with-yii2-localization-with-i18n--cms-23140
+
+message/extract @app/config/i18n.php
