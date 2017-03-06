@@ -60,7 +60,7 @@ $user_id = Yii::$app->user->id;
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Save Details') : Yii::t('app', 'Update Details'), [
             'class' => $model->isNewRecord ? 'btn btn-success btn-block' : 'btn btn-primary btn-block',
-            //'disabled' => true
+            'disabled' => $model->isNewRecord ? true : false
         ]) ?>
     </div>
     <?php ActiveForm::end(); ?>
