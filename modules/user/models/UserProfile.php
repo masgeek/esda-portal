@@ -14,11 +14,13 @@ use Yii;
  * @property string $OTHER_NAMES
  * @property string $PHONE_NUMBER
  * @property integer $INSTITUTION_ID
+ * @property integer $MEMBERSHIP_TYPE_ID
  * @property string $ACCOUNT_STATUS
  * @property string $DATE_REGISTERED
  * @property string $DATE_UPDATED
  *
  * @property UserAuthentication[] $userAuthentications
+ * @property MembershipType $mEMBERSHIPTYPE
  * @property Institutions $iNSTITUTION
  * @property UserUploads[] $userUploads
  */
@@ -38,8 +40,8 @@ class UserProfile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_NAME', 'EMAIL_ADDRESS', 'SURNAME', 'OTHER_NAMES','INSTITUTION_ID'], 'required'],
-            [['INSTITUTION_ID'], 'integer'],
+            [['USER_NAME', 'EMAIL_ADDRESS', 'SURNAME', 'OTHER_NAMES', 'INSTITUTION_ID', 'MEMBERSHIP_TYPE_ID'], 'required'],
+            [['INSTITUTION_ID', 'MEMBERSHIP_TYPE_ID'], 'integer'],
             [['DATE_REGISTERED', 'DATE_UPDATED'], 'safe'],
             [['USER_NAME'], 'string', 'max' => 20],
             [['EMAIL_ADDRESS', 'SURNAME', 'OTHER_NAMES'], 'string', 'max' => 80],
@@ -47,6 +49,7 @@ class UserProfile extends \yii\db\ActiveRecord
             [['ACCOUNT_STATUS'], 'string', 'max' => 15],
             [['USER_NAME'], 'unique'],
             [['EMAIL_ADDRESS'], 'unique'],
+            [['MEMBERSHIP_TYPE_ID'], 'exist', 'skipOnError' => true, 'targetClass' => MembershipType::className(), 'targetAttribute' => ['MEMBERSHIP_TYPE_ID' => 'MEMBERSHIP_TYPE_ID']],
             [['INSTITUTION_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Institutions::className(), 'targetAttribute' => ['INSTITUTION_ID' => 'INSTITUTION_ID']],
         ];
     }
@@ -64,6 +67,7 @@ class UserProfile extends \yii\db\ActiveRecord
             'OTHER_NAMES' => Yii::t('app', 'Other Names'),
             'PHONE_NUMBER' => Yii::t('app', 'Phone Number'),
             'INSTITUTION_ID' => Yii::t('app', 'Affiliated Institution'),
+            'MEMBERSHIP_TYPE_ID' => Yii::t('app', 'Membership Type'),
             'ACCOUNT_STATUS' => Yii::t('app', 'Account Status'),
             'DATE_REGISTERED' => Yii::t('app', 'Date Registered'),
             'DATE_UPDATED' => Yii::t('app', 'Last Updated'),
@@ -76,6 +80,14 @@ class UserProfile extends \yii\db\ActiveRecord
     public function getUserAuthentications()
     {
         return $this->hasMany(UserAuthentication::className(), ['USER_ID' => 'USER_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMEMBERSHIPTYPE()
+    {
+        return $this->hasOne(MembershipType::className(), ['MEMBERSHIP_TYPE_ID' => 'MEMBERSHIP_TYPE_ID']);
     }
 
     /**

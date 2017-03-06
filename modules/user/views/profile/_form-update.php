@@ -30,6 +30,17 @@ use yii\widgets\ActiveForm;
                 'allowClear' => false
             ],
         ]); ?>
+        <div class="col-md-4">
+            <?= $form->field($model, 'MEMBERSHIP_TYPE_ID')->widget(kartik\select2\Select2::classname(), [
+                'data' => \app\modules\user\models\MembershipModel::GetMembershipTypes(),
+                //'language' => 'en',
+                'options' => ['placeholder' => 'Select MembershipType ...'],
+                'pluginOptions' => [
+                    'allowClear' => false
+                ],
+            ]); ?>
+        </div>
+
         <div class="row toggle-field" style="display: none;">
             <?= Html::textInput('HASH_PASSWORD', $model->userAuthentications[0]->PASSWORD, ['id' => 'password', 'class' => 'form-control hiddens', 'readonly' => true]) ?>
             <div class="col-md-6">
