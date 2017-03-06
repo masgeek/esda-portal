@@ -19,5 +19,6 @@ class Constants
     /**
      * Indicates if a file is private or public
      */
-    const FILE_PRIVACY = ['PRIVATE' => 1, 'PUBLIC' => 0];
+    const FILE_IS_PRIVATE = 1;
+    const FILE_IS_NOT_PRIVATE = 0;
 }

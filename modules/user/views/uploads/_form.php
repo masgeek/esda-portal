@@ -41,7 +41,10 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'FILE_PATH')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'COMMENTS')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'PUBLICLY_AVAILABLE')->dropDownList(\app\components\Constants::FILE_PRIVACY) ?>
+    <?= $form->field($model, 'PUBLICLY_AVAILABLE')->dropDownList([
+        'Private' => \app\components\Constants::FILE_IS_PRIVATE,
+        'Public' => \app\components\Constants::FILE_IS_NOT_PRIVATE,
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
