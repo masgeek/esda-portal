@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\user\models\UploadsModel */
 
 $this->title = Yii::$app->name . '|' . $model->FILE_NAME;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Uploads'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'My Documents'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-uploads-view">
@@ -30,24 +30,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'UPLOAD_ID',
-            'USER_ID',
-            'FILE_NAME',
-            //'FILE_PATH',
+            [
+                'attribute' => 'USER_ID',
+                'value' => $model->uSER->SURNAME . ' ' . $model->uSER->OTHER_NAMES
+            ],
             [
                 'attribute' => 'FILE_PATH',
                 'format' => 'raw',
                 'value' => function ($data) {
                     /* @var $data \app\modules\user\models\UploadsModel */
-                    $file_link = '@web'.$data->FILE_PATH;
+                    $file_link = '@web' . $data->FILE_PATH;
                     return Html::a($data->FILE_NAME, $file_link);
                 }
             ],
             'COMMENTS:ntext',
-            'PUBLICLY_AVAILABLE',
+            'PUBLICLY_AVAILABLE:boolean',
             'DATE_UPLOADED',
             'UPDATED',
-            'DELETED',
+            //'DELETED:boolean',
             //['attribute' => 'UPDATED', 'type' => DetailView::INPUT_DATE],
         ],
     ]) ?>
