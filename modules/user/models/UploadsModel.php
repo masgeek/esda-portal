@@ -48,7 +48,8 @@ class UploadsModel extends UserUploads
         $save_path = Yii::$app->basePath . $directory_path;
 
         if (!file_exists($save_path)) {
-            mkdir($save_path, 0777); //if directory does not exists create it with full permissions
+            //mkdir($save_path, 0777); //if directory does not exists create it with full permissions
+            mkdir($save_path); //if directory does not exists create it with full permissions
         }
 
         if ($this->validate()) {
