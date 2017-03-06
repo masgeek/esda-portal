@@ -42,8 +42,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'COMMENTS')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'PUBLICLY_AVAILABLE')->dropDownList([
-        'Private' => \app\components\Constants::FILE_IS_PRIVATE,
-        'Public' => \app\components\Constants::FILE_IS_NOT_PRIVATE,
+        \app\components\Constants::FILE_IS_PRIVATE => 'Private',
+        \app\components\Constants::FILE_IS_NOT_PRIVATE => 'Public',
     ]) ?>
 
     <div class="form-group">
