@@ -19,4 +19,14 @@ class MembershipModel extends MembershipType
         $institution_list = ArrayHelper::map($list, 'MEMBERSHIP_TYPE_ID', 'MEMBERSHIP_NAME');
         return $institution_list;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'MEMBERSHIP_TYPE_ID' => Yii::t('app', 'Membership Type'),
+        ];
+    }
 }
