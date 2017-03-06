@@ -2,6 +2,7 @@
 
 namespace app\modules\user\controllers;
 
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Yii;
 use app\modules\user\models\UploadsModel;
 use app\modules\user\search\UploadsSearch;
@@ -83,6 +84,7 @@ class UploadsController extends Controller
         $model = new UploadsModel();
 
         $model->USER_ID = $user_id;
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->UPLOAD_ID]);
         } else {

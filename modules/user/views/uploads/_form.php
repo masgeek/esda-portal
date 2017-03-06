@@ -12,7 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'USER_ID')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'USER_ID')->hiddenInput(['maxlength' => true, 'readonly' => true])->label(false) ?>
+    <?= $form->field($model, 'FILE_NAME')->hiddenInput(['maxlength' => true, 'readonly' => true])->label(false) ?>
+    <?= $form->field($model, 'FILE_PATH')->hiddenInput(['maxlength' => true, 'readonly' => true])->label(false) ?>
 
     <?= $form->field($model, 'FILE_SELECTOR')->widget(\kartik\file\FileInput::className(), [
         'options' => [
@@ -20,11 +22,13 @@ use yii\widgets\ActiveForm;
             'multiple' => false
         ],
         'pluginOptions' => [
-           // 'allowedFileExtensions' => ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'docx', 'rtf', 'odt'],
+            'allowedFileExtensions' => ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'docx', 'rtf', 'odt'],
             'maxFileCount' => 10,
             'uploadAsync' => true,
-            'showPreview' => false,
+            'showPreview' => true,
             'showUpload' => true,
+            'overwriteInitial' => false,
+            'maxFileSize' => 10000,
             'uploadExtraData' => [
                 'USER_ID' => $model->USER_ID,
                 '_csrf' => Yii::$app->request->csrfToken
@@ -33,18 +37,16 @@ use yii\widgets\ActiveForm;
         ],
         'pluginEvents' => [
             'fileuploaded' => "function(event, data, previewId, index){
-                //console.log(data.filenames);
-                //console.log(data.response.path);
-                //console.log(data.response.file_name);
-                $.each(data.response, function( index, value ) {
-                   console.log(value);
+                $.each(data.response, function( index, resp ) {
+                    $('#uploadsmodel-file_path').val(resp.path);
+                    $('#uploadsmodel-file_name').val(resp.file_name);
+                    //after uploading enable the submit button
+                    $(':input[type=\"submit\"]').prop('disabled', false);
                 });
-                //enable the submit button
-                // $(':input[type=\"submit\"]').prop('disabled', false);
-            }" //after uploading enable the submit button
+
+            }"
         ]
     ]); ?>
-    <?= $form->field($model, 'FILE_PATH')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'COMMENTS')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'PUBLICLY_AVAILABLE')->dropDownList([
@@ -54,11 +56,9 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Save Details') : Yii::t('app', 'Update Details'), [
-                'class' => $model->isNewRecord ? 'btn btn-success btn-block' : 'btn btn-primary btn-block'
-            ,'disabled'=>true
+            'class' => $model->isNewRecord ? 'btn btn-success btn-block' : 'btn btn-primary btn-block'
+            , 'disabled' => true
         ]) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>
