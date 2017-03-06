@@ -6,13 +6,16 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\modules\user\models\UploadsModel */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $user_id */
+
+$user_id = Yii::$app->user->id;
 ?>
 
 <div class="user-uploads-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'USER_ID')->hiddenInput(['maxlength' => true, 'readonly' => true])->label(false) ?>
+    <?= $form->field($model, 'USER_ID')->hiddenInput(['value' => $user_id, 'maxlength' => true, 'readonly' => true])->label(false) ?>
     <?= $form->field($model, 'FILE_NAME')->hiddenInput(['maxlength' => true, 'readonly' => true])->label(false) ?>
     <?= $form->field($model, 'FILE_PATH')->hiddenInput(['maxlength' => true, 'readonly' => true])->label(false) ?>
 
@@ -25,12 +28,12 @@ use yii\widgets\ActiveForm;
             'allowedFileExtensions' => ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'docx', 'rtf', 'odt'],
             'maxFileCount' => 10,
             'uploadAsync' => true,
-            'showPreview' => true,
+            'showPreview' => false,
             'showUpload' => true,
             'overwriteInitial' => false,
             'maxFileSize' => 10000,
             'uploadExtraData' => [
-                'USER_ID' => $model->USER_ID,
+                'USER_ID' => $user_id,
                 '_csrf' => Yii::$app->request->csrfToken
             ],
             'uploadUrl' => \yii\helpers\Url::to(['//users/uploads/file-upload']),
@@ -56,8 +59,8 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Save Details') : Yii::t('app', 'Update Details'), [
-            'class' => $model->isNewRecord ? 'btn btn-success btn-block' : 'btn btn-primary btn-block'
-            , 'disabled' => true
+            'class' => $model->isNewRecord ? 'btn btn-success btn-block' : 'btn btn-primary btn-block',
+            //'disabled' => true
         ]) ?>
     </div>
     <?php ActiveForm::end(); ?>

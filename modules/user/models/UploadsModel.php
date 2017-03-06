@@ -23,12 +23,19 @@ class UploadsModel extends UserUploads
     {
         $scenarios = parent::scenarios();
         $scenarios[Constants::SCENARIO_AJAX_UPLOAD] = ['imageFiles', 'FILE_SELECTOR'];//Scenario Values Only Accepted
+        $scenarios[Constants::SCENARIO_INSERT] = ['USER_ID', 'FILE_NAME', 'FILE_PATH', 'PUBLICLY_AVAILABLE'];//Scenario Values Only Accepted
         return $scenarios;
     }
 
     public function rules()
     {
         return [
+            [['USER_ID', 'FILE_NAME', 'FILE_PATH', 'PUBLICLY_AVAILABLE'], 'required','on'=>[Constants::SCENARIO_INSERT]],
+            [['USER_ID', 'PUBLICLY_AVAILABLE', 'DELETED'], 'integer'],
+            [['COMMENTS'], 'string'],
+            [['DATE_UPLOADED', 'UPDATED'], 'safe'],
+            [['FILE_NAME', 'FILE_PATH'], 'string', 'max' => 200],
+            [['USER_ID'], 'exist', 'skipOnError' => true, 'targetClass' => UserProfile::className(), 'targetAttribute' => ['USER_ID' => 'USER_ID']],
             //[['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
         ];
     }
@@ -61,7 +68,6 @@ class UploadsModel extends UserUploads
 
     public function beforeSave($insert)
     {
-
         $date = new Expression('NOW()');
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {

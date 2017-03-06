@@ -80,19 +80,24 @@ class UploadsController extends Controller
      */
     public function actionCreate()
     {
-        $user_id = Yii::$app->user->id;
 
         $model = new UploadsModel();
+        $model->scenario = Constants::SCENARIO_INSERT;
+        //$model->USER_ID = $user_id;
 
-        $model->USER_ID = $user_id;
+        if (Yii::$app->request->isPost) {
+            $post = Yii::$app->request->post();
+            if ($model->setAttributes($post) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->UPLOAD_ID]);
+            } else {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->UPLOAD_ID]);
-        } else {
-            return $this->render('create', [
-                'model' => $model
-            ]);
+                var_dump($model->getErrors());
+            }
         }
+        return $this->render('create', [
+            'model' => $model
+        ]);
+
     }
 
     public function actionFileUpload()
@@ -101,7 +106,7 @@ class UploadsController extends Controller
         $user_id = (Yii::$app->request->post('USER_ID'));
 
         $model = new UploadsModel();
-        $model->scenario = Constants::AJAX_UPLOAD;
+        $model->scenario = Constants::SCENARIO_AJAX_UPLOAD;
 
         if (Yii::$app->request->isPost) {
             $model->imageFiles = UploadedFile::getInstances($model, 'FILE_SELECTOR');

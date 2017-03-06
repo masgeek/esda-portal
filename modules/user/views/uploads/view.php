@@ -1,22 +1,24 @@
 <?php
 
 use yii\helpers\Html;
+//use kartik\detail\DetailView;
+
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\user\models\UploadsModel */
 
-$this->title = $model->UPLOAD_ID;
+$this->title = Yii::$app->name . '|' . $model->FILE_NAME;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Uploads'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-uploads-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($model->FILE_NAME) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->UPLOAD_ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->UPLOAD_ID], [
+        <?= Html::a(Yii::t('app', 'Update Document'), ['update', 'id' => $model->UPLOAD_ID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete File'), ['delete', 'id' => $model->UPLOAD_ID], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
@@ -30,12 +32,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'UPLOAD_ID',
             'USER_ID',
-            'FILE_PATH',
+            'FILE_NAME',
+            //'FILE_PATH',
+            [
+                'attribute' => 'FILE_PATH',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    /* @var $data \app\modules\user\models\UploadsModel */
+                    $file_link = '@web'.$data->FILE_PATH;
+                    return Html::a($data->FILE_NAME, $file_link);
+                }
+            ],
             'COMMENTS:ntext',
             'PUBLICLY_AVAILABLE',
             'DATE_UPLOADED',
             'UPDATED',
             'DELETED',
+            //['attribute' => 'UPDATED', 'type' => DetailView::INPUT_DATE],
         ],
     ]) ?>
 
