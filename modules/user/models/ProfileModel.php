@@ -68,6 +68,7 @@ class ProfileModel extends UserProfile
             'PASSWORD' => Yii::t('app', 'Password'),
             'REPEAT_PASSWORD' => Yii::t('app', 'Repeat Password'),
             'CHANGE_PASSWORD' => Yii::t('app', 'Change Password'),
+            'MEMBERSHIP_TYPE_ID' => Yii::t('app', 'Membership Type'),
         ];
     }
 
