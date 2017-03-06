@@ -9,7 +9,7 @@
 namespace app\models;
 
 
-use app\components\AccountStates;
+use app\components\Constants;
 use app\modules\user\models\AuthenticationModel;
 use app\modules\user\models\ProfileModel;
 use yii\web\IdentityInterface;
@@ -79,7 +79,7 @@ class LoginModel extends AuthenticationModel implements IdentityInterface
             ->select(['USER_ID', 'USER_NAME'])//select only specific fields
             ->where(['USER_NAME' => $username])
             ->orWhere(['EMAIL_ADDRESS' => $username])
-            //->andWhere(['ACCOUNT_STATUS' => AccountStates::NOT_ACTIVATED])
+            //->andWhere(['ACCOUNT_STATUS' => Constants::NOT_ACTIVATED])
             ->one();
         if ($userModel != null) {
             $account_found = static::findOne(['USER_ID' => $userModel->USER_ID]);

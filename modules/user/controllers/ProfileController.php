@@ -47,7 +47,6 @@ class ProfileController extends Controller
 
     /**
      * Displays a single UserProfile model.
-     * @param integer $id
      * @return mixed
      */
     public function actionView()

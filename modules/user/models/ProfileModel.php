@@ -2,7 +2,7 @@
 
 namespace app\modules\user\models;
 
-use app\components\AccountStates;
+use app\components\Constants;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
@@ -81,7 +81,7 @@ class ProfileModel extends UserProfile
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
                 $this->DATE_REGISTERED = $date;
-                $this->ACCOUNT_STATUS = AccountStates::NOT_ACTIVATED;
+                $this->ACCOUNT_STATUS = Constants::NOT_ACTIVATED;
                 //these belong to another model
                 $this->ACCOUNT_AUTH_KEY = \Yii::$app->security->generateRandomString();
                 $this->PASSWORD = sha1($this->PASSWORD); //hash the user password

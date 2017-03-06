@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'USER_ID')->textInput() ?>
+    <?= $form->field($model, 'USER_ID')->hiddenInput()->label(false) ?>
 
     <?= $form->field($model, 'FILE_SELECTOR')->widget(\kartik\file\FileInput::className(), [
         'options' => [
@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
             'maxFileCount' => 10,
             'uploadAsync' => true,
             'showPreview' => false,
-            //'showUpload' => false,
+            'showUpload' => true,
             'uploadExtraData' => [
                 'USER_ID' => $model->USER_ID,
                 '_csrf' => Yii::$app->request->csrfToken
@@ -40,7 +40,8 @@ use yii\widgets\ActiveForm;
     ]); ?>
     <?= $form->field($model, 'FILE_PATH')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'COMMENTS')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'PUBLICLY_AVAILABLE')->textInput() ?>
+
+    <?= $form->field($model, 'PUBLICLY_AVAILABLE')->dropDownList(\app\components\Constants::FILE_PRIVACY) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
