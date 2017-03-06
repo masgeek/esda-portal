@@ -12,6 +12,8 @@ use app\modules\user\models\UploadsModel;
  */
 class UploadsSearch extends UploadsModel
 {
+    public $owner_id;
+
     /**
      * @inheritdoc
      */
@@ -60,7 +62,7 @@ class UploadsSearch extends UploadsModel
         // grid filtering conditions
         $query->andFilterWhere([
             'UPLOAD_ID' => $this->UPLOAD_ID,
-            'USER_ID' => $this->USER_ID,
+            'USER_ID' => $this->owner_id, //$this->USER_ID,
             'PUBLICLY_AVAILABLE' => $this->PUBLICLY_AVAILABLE,
             'DATE_UPLOADED' => $this->DATE_UPLOADED,
             'UPDATED' => $this->UPDATED,

@@ -52,7 +52,11 @@ class UploadsController extends Controller
      */
     public function actionIndex()
     {
+
+
         $searchModel = new UploadsSearch();
+        $searchModel->owner_id = Yii::$app->user->id;
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
