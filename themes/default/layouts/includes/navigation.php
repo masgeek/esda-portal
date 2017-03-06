@@ -25,7 +25,7 @@ echo Nav::widget([
         Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]) : [
             'label' => 'Welcome ' . Yii::$app->user->identity->username,
             'items' => [
-                ['label' => 'My Profile', 'url' => ['//users/profile/view', 'id' => yii::$app->user->id]],
+                ['label' => 'My Profile', 'url' => ['//users/profile/view']],
                 ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']],
