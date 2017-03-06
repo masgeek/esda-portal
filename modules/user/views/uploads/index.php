@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\modules\user\search\UploadsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'User Uploads');
+$this->title = Yii::t('app', 'My Uploads');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-uploads-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create User Uploads'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Add New Document'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
