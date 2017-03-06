@@ -81,7 +81,8 @@ class ProfileController extends Controller
             if ($authModel->save()) {
                 //commit transaction
                 $transaction->commit();
-                $this->redirect(['view', 'id' => $model->USER_ID]);
+                //$this->redirect(['view', 'id' => $model->USER_ID]);
+                $this->redirect(['//site/login']);
             } else {
                 //roll back the transaction
                 $model->PASSWORD = null; //clear the password field

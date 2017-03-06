@@ -38,7 +38,7 @@ class UserProfile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_NAME', 'EMAIL_ADDRESS', 'SURNAME', 'OTHER_NAMES'], 'required'],
+            [['USER_NAME', 'EMAIL_ADDRESS', 'SURNAME', 'OTHER_NAMES','INSTITUTION_ID'], 'required'],
             [['INSTITUTION_ID'], 'integer'],
             [['DATE_REGISTERED', 'DATE_UPDATED'], 'safe'],
             [['USER_NAME'], 'string', 'max' => 20],
