@@ -17,7 +17,7 @@ return [
     'messagePath' => '@app/messages',
     'languages' => ['fr','es','sw'],
     'translator' => 'Yii::t',
-    'sort' => false,
+    'sort' => true,
     'overwrite' => true,
     'removeUnused' => false,
     'markUnused' => true,
