@@ -9,6 +9,7 @@ namespace app\commands;
 
 use yii\console\Controller;
 use Yii;
+
 /**
  * This command echoes the first argument that you have entered.
  *
@@ -28,10 +29,11 @@ class HelloController extends Controller
         echo $message . "\n";
     }
 
-    public function actionDrop(){
-
-
-
+    /**
+     * @inheritdoc
+     */
+    public function actionDrop()
+    {
         Yii::$app->db->createCommand("SET foreign_key_checks = 0")->execute();
         $tables = Yii::$app->db->schema->getTableNames();
         foreach ($tables as $table) {

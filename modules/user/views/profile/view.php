@@ -11,9 +11,13 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'My Profile'), 'url' 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-profile-view">
-    <p>
-        <?= Html::a(Yii::t('app', 'Update Profile'), ['update', 'id' => $model->USER_ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Upload Documents'), ['//users/uploads/create', 'user_id' => $model->USER_ID], ['class' => 'btn btn-primary']) ?>
+    <div class="row">
+        <div class="col-md-6">
+            <?= Html::a(Yii::t('app', 'Update Profile'), ['update', 'id' => $model->USER_ID], ['class' => 'btn btn-primary btn-block']) ?>
+        </div>
+        <div class="col-md-6 pull-right">
+            <?= Html::a(Yii::t('app', 'Upload Documents'), ['//users/uploads/create'], ['class' => 'btn btn-warning btn-block']) ?>
+        </div>
         <!--?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->USER_ID], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -21,21 +25,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?-->
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            //'USER_ID',
-            'USER_NAME',
-            'EMAIL_ADDRESS:email',
-            'SURNAME',
-            'OTHER_NAMES',
-            'PHONE_NUMBER',
-            'ACCOUNT_STATUS',
-            'DATE_REGISTERED',
-            'DATE_UPDATED',
-        ],
-    ]) ?>
-
+    </div>
+    <hr/>
+    <div class="row">
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                //'USER_ID',
+                'USER_NAME',
+                'EMAIL_ADDRESS:email',
+                'SURNAME',
+                'OTHER_NAMES',
+                'PHONE_NUMBER',
+                'ACCOUNT_STATUS',
+                'DATE_REGISTERED',
+                'DATE_UPDATED',
+            ],
+        ]) ?>
+    </div>
 </div>

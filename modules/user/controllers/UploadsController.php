@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
 
 /**
  * UploadsController implements the CRUD actions for UserUploads model.
@@ -24,7 +25,20 @@ class UploadsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
+                    'request-for-bid' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'update', 'file-uploads'],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    // everything else is denied
                 ],
             ],
         ];
@@ -62,8 +76,10 @@ class UploadsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($user_id)
+    public function actionCreate()
     {
+        $user_id = Yii::$app->user->id;
+
         $model = new UploadsModel();
 
         $model->USER_ID = $user_id;
@@ -86,7 +102,7 @@ class UploadsController extends Controller
             $model->imageFiles = UploadedFile::getInstances($model, 'FILE_SELECTOR');
             if (!$model->upload($user_id)) {
                 $output = ['error' => 'Unable to upload file. please try again'];
-            }else{
+            } else {
                 $output = ['path' => 6];
             }
         } else {

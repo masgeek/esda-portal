@@ -23,22 +23,27 @@ class UploadsModel extends UserUploads
 
     public function upload($user_id)
     {
+        $resp = [];
         $imagesFolder = Yii::$app->params['uploadsFolder'];
-        $path = Yii::$app->basePath . $imagesFolder . $user_id . '/';
+        $directory_path = $imagesFolder . $user_id . '/';
+        $save_path = Yii::$app->basePath . $directory_path;
 
-        if (!file_exists($path)) {
-            mkdir($path, 0777); //if directory does not exists create it with full permissions
+        if (!file_exists($save_path)) {
+            mkdir($save_path, 0777); //if directory does not exists create it with full permissions
         }
 
         if ($this->validate()) {
             foreach ($this->imageFiles as $file) {
-                $file_name = $path . $file->baseName . '.' . $file->extension;
-                $file->saveAs($file_name);
+                $full_file_name = $file->baseName . '.' . $file->extension;
+                $full_file_name_path = $save_path . $full_file_name;
+                $file->saveAs($full_file_name_path);
+                $resp[]=[
+                    'path'=>$directory_path,
+                    'file_name'=>$full_file_name
+                ];
             }
-            return true;
-        } else {
-            return false;
         }
+        return $resp;
     }
 
     public function beforeSave($insert)
