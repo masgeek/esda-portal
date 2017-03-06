@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\user\models\UploadsModel */
 
-$this->title = Yii::t('app', 'Create User Uploads');
+$this->title = Yii::t('app', 'Upload Documents');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Uploads'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
