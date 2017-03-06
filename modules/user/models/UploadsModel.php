@@ -23,7 +23,7 @@ class UploadsModel extends UserUploads
     {
         $scenarios = parent::scenarios();
         $scenarios[Constants::SCENARIO_AJAX_UPLOAD] = ['imageFiles', 'FILE_SELECTOR'];//Scenario Values Only Accepted
-        $scenarios[Constants::SCENARIO_INSERT] = ['USER_ID', 'FILE_NAME', 'FILE_PATH', 'PUBLICLY_AVAILABLE'];//Scenario Values Only Accepted
+        $scenarios[Constants::SCENARIO_INSERT] = ['USER_ID', 'FILE_NAME', 'FILE_PATH','COMMENTS', 'PUBLICLY_AVAILABLE'];//Scenario Values Only Accepted
         return $scenarios;
     }
 
