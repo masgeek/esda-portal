@@ -16,41 +16,49 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($model->FILE_NAME) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update Document'), ['update', 'id' => $model->UPLOAD_ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete File'), ['delete', 'id' => $model->UPLOAD_ID], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
+    <div class="row">
+        <div class="col-md-6">
+            <?= Html::a(Yii::t('app', 'Update Document'), ['update', 'id' => $model->UPLOAD_ID], ['class' => 'btn btn-primary']) ?>
+        </div>
+        <div class="col-md-6 ">
+            <?= Html::a(Yii::t('app', 'Delete Document'), ['delete', 'id' => $model->UPLOAD_ID], [
+                'class' => 'btn btn-danger pull-right',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete this document?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                [
+                    'label' => 'Owner',
+                    'attribute' => 'USER_ID',
+                    'value' => $model->uSER->SURNAME . ' ' . $model->uSER->OTHER_NAMES
+                ],
+                [
+                    'attribute' => 'FILE_PATH',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                        /* @var $data \app\modules\user\models\UploadsModel */
+                        $file_link = '@web' . $data->FILE_PATH;
+                        return Html::a($data->FILE_NAME, $file_link);
+                    }
+                ],
+                'COMMENTS:ntext',
+                'PUBLICLY_AVAILABLE:boolean',
+                'DATE_UPLOADED',
+                'UPDATED',
+                //'DELETED:boolean',
+                //['attribute' => 'UPDATED', 'type' => DetailView::INPUT_DATE],
             ],
         ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            [
-                'label' => 'Owner',
-                'attribute' => 'USER_ID',
-                'value' => $model->uSER->SURNAME . ' ' . $model->uSER->OTHER_NAMES
-            ],
-            [
-                'attribute' => 'FILE_PATH',
-                'format' => 'raw',
-                'value' => function ($data) {
-                    /* @var $data \app\modules\user\models\UploadsModel */
-                    $file_link = '@web' . $data->FILE_PATH;
-                    return Html::a($data->FILE_NAME, $file_link);
-                }
-            ],
-            'COMMENTS:ntext',
-            'PUBLICLY_AVAILABLE:boolean',
-            'DATE_UPLOADED',
-            'UPDATED',
-            //'DELETED:boolean',
-            //['attribute' => 'UPDATED', 'type' => DetailView::INPUT_DATE],
-        ],
-    ]) ?>
-
+    </div>
+    <div class="row">
+            <?= Html::a(Yii::t('app', 'My Documents'), ['//my-uploads'], ['class' => 'btn btn-info btn-block']) ?>
+    </div>
 </div>
