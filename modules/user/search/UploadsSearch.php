@@ -13,6 +13,7 @@ use app\modules\user\models\UploadsModel;
 class UploadsSearch extends UploadsModel
 {
     public $owner_id;
+    public $document_type;
 
     /**
      * @inheritdoc
@@ -63,7 +64,7 @@ class UploadsSearch extends UploadsModel
         $query->andFilterWhere([
             'UPLOAD_ID' => $this->UPLOAD_ID,
             'USER_ID' => $this->owner_id, //$this->USER_ID,
-            'PUBLICLY_AVAILABLE' => $this->PUBLICLY_AVAILABLE,
+            'PUBLICLY_AVAILABLE' => $this->document_type,//$this->PUBLICLY_AVAILABLE,
             'DATE_UPLOADED' => $this->DATE_UPLOADED,
             'UPDATED' => $this->UPDATED,
             'DELETED' => $this->DELETED,

@@ -40,6 +40,14 @@ class UploadsModel extends UserUploads
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'FILE_PATH' => Yii::t('app', 'Document Link'),
+            'PUBLICLY_AVAILABLE' => Yii::t('app', 'Publicly Available'),
+        ];
+    }
+
     public function upload($user_id)
     {
         $resp = [];

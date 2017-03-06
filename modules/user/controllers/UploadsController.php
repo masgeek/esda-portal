@@ -65,6 +65,19 @@ class UploadsController extends Controller
         ]);
     }
 
+    public function actionPublicDocs()
+    {
+        $searchModel = new UploadsSearch();
+        $searchModel->document_type = Constants::FILE_IS_PUBLIC;
+
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('public-docs', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single UserUploads model.
      * @param integer $id

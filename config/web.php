@@ -94,6 +94,7 @@ $config = [
                 'recover' => 'users/default/recover',
                 'uploads' => 'users/uploads/create',
                 'my-uploads' => '/users/uploads/index',
+                'public-docs' => '/users/uploads/public-docs',
 
             ],
         ],
