@@ -23,7 +23,7 @@ echo Nav::widget([
         ['label' => 'About', 'url' => ['/site/about']],
         //['label' => 'Contact', 'url' => ['/site/contact']],
         Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]) : [
-            'label' => 'Welcome ' . Yii::$app->user->identity->username,
+            'label' => Yii::t('app', 'Welcome') . ' (' . Yii::$app->user->identity->username . ')',
             'items' => [
                 ['label' => 'My Profile', 'url' => ['//users/profile/view']],
                 ['label' => 'My Documents', 'url' => ['//my-uploads']],
