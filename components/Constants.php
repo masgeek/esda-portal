@@ -21,4 +21,9 @@ class Constants
      */
     const FILE_IS_PRIVATE = 1;
     const FILE_IS_NOT_PRIVATE = 0;
+
+    //Model SCenarios
+    const SCENARIO_SIGNUP = 'signup';
+    const SCENARIO_UPDATE = 'update';
+    const SCENARIO_AJAX_UPLOAD = 'ajax';
 }

@@ -2,6 +2,7 @@
 
 namespace app\modules\user\controllers;
 
+use app\components\Constants;
 use app\modules\user\models\AuthenticationModel;
 use Yii;
 use app\modules\user\models\ProfileModel;
@@ -65,7 +66,7 @@ class ProfileController extends Controller
     public function actionCreate()
     {
         $model = new ProfileModel();
-        $model->scenario = ProfileModel::SCENARIO_SIGNUP;
+        $model->scenario = Constants::SCENARIO_SIGNUP;
 
         $db = \Yii::$app->db;
         $transaction = $db->beginTransaction();
@@ -103,7 +104,7 @@ class ProfileController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->scenario = ProfileModel::SCENARIO_UPDATE;
+        $model->scenario = Constants::SCENARIO_UPDATE;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->USER_ID]);
         } else {

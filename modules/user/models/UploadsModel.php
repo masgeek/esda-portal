@@ -2,6 +2,7 @@
 
 namespace app\modules\user\models;
 
+use app\components\Constants;
 use Yii;
 use yii\db\Expression;
 
@@ -13,6 +14,17 @@ class UploadsModel extends UserUploads
 
     public $imageFiles;
     public $FILE_SELECTOR;
+
+    /**
+     * @inheritdoc
+     * @return array
+     */
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[Constants::SCENARIO_AJAX_UPLOAD] = ['imageFiles', 'FILE_SELECTOR'];//Scenario Values Only Accepted
+        return $scenarios;
+    }
 
     public function rules()
     {
@@ -31,15 +43,18 @@ class UploadsModel extends UserUploads
         if (!file_exists($save_path)) {
             mkdir($save_path, 0777); //if directory does not exists create it with full permissions
         }
-        foreach ($this->imageFiles as $file) {
-            $full_file_name = $file->baseName . '.' . $file->extension;
-            $full_file_name_path = $save_path . $full_file_name;
-            $file->saveAs($full_file_name_path);
-            $resp[] = [
-                'success' => true,
-                'path' => $directory_path . $full_file_name,
-                'file_name' => $full_file_name,
-            ];
+
+        if ($this->validate()) {
+            foreach ($this->imageFiles as $file) {
+                $full_file_name = $file->baseName . '.' . $file->extension;
+                $full_file_name_path = $save_path . $full_file_name;
+                $file->saveAs($full_file_name_path);
+                $resp[] = [
+                    'success' => true,
+                    'path' => $directory_path . $full_file_name,
+                    'file_name' => $full_file_name,
+                ];
+            }
         }
         return $resp;
     }

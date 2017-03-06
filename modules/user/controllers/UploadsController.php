@@ -2,6 +2,7 @@
 
 namespace app\modules\user\controllers;
 
+use app\components\Constants;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Yii;
 use app\modules\user\models\UploadsModel;
@@ -100,6 +101,8 @@ class UploadsController extends Controller
         $user_id = (Yii::$app->request->post('USER_ID'));
 
         $model = new UploadsModel();
+        $model->scenario = Constants::AJAX_UPLOAD;
+
         if (Yii::$app->request->isPost) {
             $model->imageFiles = UploadedFile::getInstances($model, 'FILE_SELECTOR');
             $output = $model->upload($user_id);
