@@ -26,6 +26,7 @@ echo Nav::widget([
             'label' => 'Welcome ' . Yii::$app->user->identity->username,
             'items' => [
                 ['label' => 'My Profile', 'url' => ['//users/profile/view']],
+                ['label' => 'My Documents', 'url' => ['//my-uploads']],
                 ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']],
