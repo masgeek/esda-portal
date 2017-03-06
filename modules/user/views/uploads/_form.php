@@ -35,6 +35,7 @@ use yii\widgets\ActiveForm;
             'fileuploaded' => "function(event, data, previewId, index){
                 console.log(data.filenames);
                 console.log(data.response.path);
+                 $(':input[type=\"submit\"]').prop('disabled', false);
             }" //after uploading enable the submit button
         ]
     ]); ?>
@@ -47,7 +48,10 @@ use yii\widgets\ActiveForm;
     ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Save Details') : Yii::t('app', 'Update Details'), [
+                'class' => $model->isNewRecord ? 'btn btn-success btn-block' : 'btn btn-primary btn-block'
+            ,'disabled'=>true
+        ]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
