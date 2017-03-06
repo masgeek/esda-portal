@@ -87,7 +87,7 @@ class UploadsController extends Controller
 
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
-            if ($model->setAttributes($post) && $model->save()) {
+            if ($model->load($post) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->UPLOAD_ID]);
             } else {
 

@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             [
+                'label' => 'Owner',
                 'attribute' => 'USER_ID',
                 'value' => $model->uSER->SURNAME . ' ' . $model->uSER->OTHER_NAMES
             ],
