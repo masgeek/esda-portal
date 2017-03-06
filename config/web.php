@@ -4,7 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
-    'name' => YII_DEBUG ? 'ESDA PORTAL <span class="label label-danger">DEV</span>' : 'ESDA PORTAL',
+    'name' => YII_DEBUG ? 'AYES PORTAL <span class="label label-danger">DEV</span>' : 'AYES PORTAL',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'en', //allows for translation,
