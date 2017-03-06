@@ -35,7 +35,7 @@ class UserUploads extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['USER_ID'], 'required'],
+            [['USER_ID', 'FILE_NAME', 'FILE_PATH', 'PUBLICLY_AVAILABLE'], 'required'],
             [['USER_ID', 'PUBLICLY_AVAILABLE', 'DELETED'], 'integer'],
             [['COMMENTS'], 'string'],
             [['DATE_UPLOADED', 'UPDATED'], 'safe'],
@@ -50,8 +50,8 @@ class UserUploads extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'UPLOAD_ID' => Yii::t('app', 'Upload  ID'),
-            'USER_ID' => Yii::t('app', 'User  ID'),
+            'UPLOAD_ID' => Yii::t('app', 'Upload ID'),
+            'USER_ID' => Yii::t('app', 'User ID'),
             'FILE_NAME' => Yii::t('app', 'File Name'),
             'FILE_PATH' => Yii::t('app', 'Document Path'),
             'COMMENTS' => Yii::t('app', 'Comments'),
