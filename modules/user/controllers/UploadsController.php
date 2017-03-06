@@ -100,10 +100,11 @@ class UploadsController extends Controller
         $model = new UploadsModel();
         if (Yii::$app->request->isPost) {
             $model->imageFiles = UploadedFile::getInstances($model, 'FILE_SELECTOR');
-            if (!$model->upload($user_id)) {
-                $output = ['error' => 'Unable to upload file. please try again'];
+            $output = $model->upload($user_id);
+            if (is_array($output) && count($output) >= 1) {
+                //$output = ['path' => 6];
             } else {
-                $output = ['path' => 6];
+                $output = ['error' => 'Unable to upload file. please try again'];
             }
         } else {
             $output = ['error' => 'No files were processed.'];

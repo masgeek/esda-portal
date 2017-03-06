@@ -37,9 +37,10 @@ class UploadsModel extends UserUploads
                 $full_file_name = $file->baseName . '.' . $file->extension;
                 $full_file_name_path = $save_path . $full_file_name;
                 $file->saveAs($full_file_name_path);
-                $resp[]=[
-                    'path'=>$directory_path,
-                    'file_name'=>$full_file_name
+                $resp[] = [
+                    'success' => true,
+                    'path' => $directory_path,
+                    'file_name' => $full_file_name
                 ];
             }
         }

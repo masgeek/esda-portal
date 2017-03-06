@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
             'multiple' => false
         ],
         'pluginOptions' => [
-            'allowedFileExtensions' => ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'docx', 'rtf', 'odt'],
+           // 'allowedFileExtensions' => ['jpg', 'jpeg', 'gif', 'png', 'pdf', 'docx', 'rtf', 'odt'],
             'maxFileCount' => 10,
             'uploadAsync' => true,
             'showPreview' => false,
@@ -33,9 +33,14 @@ use yii\widgets\ActiveForm;
         ],
         'pluginEvents' => [
             'fileuploaded' => "function(event, data, previewId, index){
-                console.log(data.filenames);
-                console.log(data.response.path);
-                 $(':input[type=\"submit\"]').prop('disabled', false);
+                //console.log(data.filenames);
+                //console.log(data.response.path);
+                //console.log(data.response.file_name);
+                $.each(data.response, function( index, value ) {
+                   console.log(value);
+                });
+                //enable the submit button
+                // $(':input[type=\"submit\"]').prop('disabled', false);
             }" //after uploading enable the submit button
         ]
     ]); ?>
