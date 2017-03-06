@@ -45,6 +45,7 @@ return [
     'User Profiles' => '',
     'User Uploads' => '',
     'Username' => '',
+    'Welcome!' => '',
     'Are you sure you want to delete this item?' => '@@Êtes-vous sûr de bien vouloir supprimer cet élément?@@',
     'Create User Uploads' => '@@Créer des téléchargements utilisateur@@',
     'Delete' => '@@Date de téléchargement@@',

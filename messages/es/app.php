@@ -68,6 +68,7 @@ return [
     'User Profiles' => '',
     'User Uploads' => '',
     'Username' => '',
+    'Welcome!' => '',
     'Are you sure you want to delete this item?' => '@@@@',
     'Create User Uploads' => '@@@@',
     'Delete' => '@@@@',
