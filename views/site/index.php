@@ -38,7 +38,7 @@
                     <li class="list-group-item">Allow researchers and entrepreneurs to share data..</li>
                 </ol>
 
-                <p><?= \yii\helpers\Html::a(Yii::t('app', 'Collaboration'), ['//public-docs'], ['class' => 'btn btn-primary']) ?></p>
+                <p><?= \yii\helpers\Html::a(Yii::t('app', 'Collaboration'), ['//public-docs'], ['class' => 'btn btn-primary btn-block']) ?></p>
             </div>
             <div class="col-lg-4">
                 <h2><?= Yii::t('app', 'Mentorship') ?></h2>
@@ -49,7 +49,7 @@
                     <li class="list-group-item">Allow young researchers to find and follow mentors on the platform</li>
                 </ol>
 
-                <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Mentorship')), ['//my-uploads'], ['class' => 'btn btn-info']) ?></p>
+                <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Mentorship')), ['//my-uploads'], ['class' => 'btn btn-info btn-block']) ?></p>
             </div>
             <div class="col-lg-4">
                 <h2>Publishing</h2>
@@ -57,7 +57,7 @@
                     <li class="list-group-item">Allow the publishing of Relevant Articles from Researchers and Entrepreneurs</li>
                     <li class="list-group-item">Allow Entrepreneurs and Researchers to access relevant articles.</li>
                 </ol>
-                <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Publishing')), ['//my-uploads'], ['class' => 'btn btn-primary']) ?></p>
+                <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Publishing')), ['//my-uploads'], ['class' => 'btn btn-primary btn-block']) ?></p>
             </div>
         </div>
 
