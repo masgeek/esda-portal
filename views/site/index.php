@@ -53,9 +53,9 @@
             </div>
             <div class="col-lg-4">
                 <h2>Publishing</h2>
-                <ol type="a">
-                    <li>Allow the publishing of Relevant Articles from Researchers and Entrepreneurs</li>
-                    <li>Allow Entrepreneurs and Researchers to access relevant articles.</li>
+                <ol type="a"class="list-group">
+                    <li class="list-group-item">Allow the publishing of Relevant Articles from Researchers and Entrepreneurs</li>
+                    <li class="list-group-item">Allow Entrepreneurs and Researchers to access relevant articles.</li>
                 </ol>
                 <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Publishing')), ['//my-uploads'], ['class' => 'btn btn-primary']) ?></p>
             </div>
