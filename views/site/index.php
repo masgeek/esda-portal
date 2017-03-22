@@ -17,9 +17,7 @@
             projections of future business opportunities, creating a common database for sustainable enterprise
             development, and generating a new stream of entrepreneurial corps in support of enterprise development.
             This concept note outlines the design of an online and mobile enabled collaborative platform for the
-            network.
-
-            .</p>
+            network.</p>
 
         <p><?= Yii::$app->user->isGuest ?
                 \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Register')), ['//register'], ['class' => 'btn btn-warning btn-block'])
@@ -34,12 +32,14 @@
                 <h2><?= Yii::t('app', 'Collaboration') ?></h2>
 
                 <p>
-                    a) Allow African entrepreneurs and researchers to collaborate amongst themselves
-                    b) Allow incubators to collaborate amongst themselves.
-                    c) Allow entrepreneurs to collaborate on joint projects/initiatives.
-                    d) Allow researcher to collaborate on research.
-                    e) Allow researchers and entrepreneurs to share data..
-                    .</p>
+                <ol type="a">
+                    <li>Allow African entrepreneurs and researchers to collaborate amongst themselves</li>
+                    <li>Allow incubators to collaborate amongst themselves.</li>
+                    <li>Allow entrepreneurs to collaborate on joint projects/initiatives.</li>
+                    <li>Allow researcher to collaborate on research.</li>
+                    <li>Allow researchers and entrepreneurs to share data..</li>
+                </ol>
+                </p>
 
                 <p><?= \yii\helpers\Html::a(Yii::t('app', 'Collaboration'), ['//public-docs'], ['class' => 'btn btn-primary']) ?></p>
             </div>
@@ -47,10 +47,12 @@
                 <h2><?= Yii::t('app', 'Mentorship') ?></h2>
 
                 <p>
-                    a) Incorporate a Mentorship Portal.
-                    b) Allow young entrepreneurs to find and follow mentors on the platform
-                    c) Allow young researchers to find and follow mentors on the platform
-                    .</p>
+                <ol type="a">
+                    <li>Incorporate a Mentorship Portal.</li>
+                    <li>Allow young entrepreneurs to find and follow mentors on the platform</li>
+                    <li>Allow young researchers to find and follow mentors on the platform</li>
+                </ol>
+                </p>
 
                 <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Mentorship')), ['//my-uploads'], ['class' => 'btn btn-info']) ?></p>
             </div>
@@ -58,8 +60,10 @@
                 <h2>Publishing</h2>
 
                 <p>
-                    a) Allow the publishing of Relevant Articles from Researchers and Entrepreneurs
-                    b) Allow Entrepreneurs and Researchers to access relevant articles.
+                <ol type="a">
+                    <li>Allow the publishing of Relevant Articles from Researchers and Entrepreneurs</li>
+                    <li>Allow Entrepreneurs and Researchers to access relevant articles.</li>
+                </ol>
                 </p>
 
                 <p>
