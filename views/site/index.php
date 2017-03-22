@@ -7,7 +7,7 @@
     <div class="jumbotron">
         <h1><?= Yii::t('app', 'Welcome to AYES Portal!') ?></h1>
 
-        <p class="lead">AFRICA YOUTH ENTREPRENUERSHIP SOCIETY (AYES) FOR SUSTAINABLE INDUSTRIALIZATION IN AFRICA
+        <p class="leads">AFRICA YOUTH ENTREPRENUERSHIP SOCIETY (AYES) FOR SUSTAINABLE INDUSTRIALIZATION IN AFRICA
             An Online Platform for new knowledge creation and sharing in support of enterprise development.
             The Youth Entrepreneurship Society (YES) is a network of young and vibrant African Entrepreneurs and
             Researchers aged below 40 years, who have the passion and motivation to make a big impact through
