@@ -30,8 +30,6 @@
         <div class="row">
             <div class="col-lg-4">
                 <h2><?= Yii::t('app', 'Collaboration') ?></h2>
-
-                <p>
                 <ol type="a">
                     <li>Allow African entrepreneurs and researchers to collaborate amongst themselves</li>
                     <li>Allow incubators to collaborate amongst themselves.</li>
@@ -39,35 +37,27 @@
                     <li>Allow researcher to collaborate on research.</li>
                     <li>Allow researchers and entrepreneurs to share data..</li>
                 </ol>
-                </p>
 
                 <p><?= \yii\helpers\Html::a(Yii::t('app', 'Collaboration'), ['//public-docs'], ['class' => 'btn btn-primary']) ?></p>
             </div>
             <div class="col-lg-4">
                 <h2><?= Yii::t('app', 'Mentorship') ?></h2>
 
-                <p>
                 <ol type="a">
                     <li>Incorporate a Mentorship Portal.</li>
                     <li>Allow young entrepreneurs to find and follow mentors on the platform</li>
                     <li>Allow young researchers to find and follow mentors on the platform</li>
                 </ol>
-                </p>
 
                 <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Mentorship')), ['//my-uploads'], ['class' => 'btn btn-info']) ?></p>
             </div>
             <div class="col-lg-4">
                 <h2>Publishing</h2>
-
-                <p>
                 <ol type="a">
                     <li>Allow the publishing of Relevant Articles from Researchers and Entrepreneurs</li>
                     <li>Allow Entrepreneurs and Researchers to access relevant articles.</li>
                 </ol>
-                </p>
-
-                <p>
-                <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Publishing')), ['//my-uploads'], ['class' => 'btn btn-primary']) ?></p></p>
+                <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Publishing')), ['//my-uploads'], ['class' => 'btn btn-primary']) ?></p>
             </div>
         </div>
 
