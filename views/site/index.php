@@ -43,10 +43,10 @@
             <div class="col-lg-4">
                 <h2><?= Yii::t('app', 'Mentorship') ?></h2>
 
-                <ol type="a">
-                    <li>Incorporate a Mentorship Portal.</li>
-                    <li>Allow young entrepreneurs to find and follow mentors on the platform</li>
-                    <li>Allow young researchers to find and follow mentors on the platform</li>
+                <ol type="a" class="list-group">
+                    <li class="list-group-item">Incorporate a Mentorship Portal.</li>
+                    <li class="list-group-item">Allow young entrepreneurs to find and follow mentors on the platform</li>
+                    <li class="list-group-item">Allow young researchers to find and follow mentors on the platform</li>
                 </ol>
 
                 <p><?= \yii\helpers\Html::a(Yii::t('app', Yii::t('app', 'Mentorship')), ['//my-uploads'], ['class' => 'btn btn-info']) ?></p>
