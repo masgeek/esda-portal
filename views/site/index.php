@@ -30,12 +30,12 @@
         <div class="row">
             <div class="col-lg-4">
                 <h2><?= Yii::t('app', 'Collaboration') ?></h2>
-                <ol type="a">
-                    <li>Allow African entrepreneurs and researchers to collaborate amongst themselves</li>
-                    <li>Allow incubators to collaborate amongst themselves.</li>
-                    <li>Allow entrepreneurs to collaborate on joint projects/initiatives.</li>
-                    <li>Allow researcher to collaborate on research.</li>
-                    <li>Allow researchers and entrepreneurs to share data..</li>
+                <ol type="a" class="list-group">
+                    <li class="list-group-item">Allow African entrepreneurs and researchers to collaborate amongst themselves</li>
+                    <li class="list-group-item">Allow incubators to collaborate amongst themselves.</li>
+                    <li class="list-group-item">Allow entrepreneurs to collaborate on joint projects/initiatives.</li>
+                    <li class="list-group-item">Allow researcher to collaborate on research.</li>
+                    <li class="list-group-item">Allow researchers and entrepreneurs to share data..</li>
                 </ol>
 
                 <p><?= \yii\helpers\Html::a(Yii::t('app', 'Collaboration'), ['//public-docs'], ['class' => 'btn btn-primary']) ?></p>
