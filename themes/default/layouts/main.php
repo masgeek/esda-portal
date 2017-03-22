@@ -39,7 +39,7 @@ use yii\widgets\Breadcrumbs;
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; AYES Portal<?= date('Y') ?></p>
+        <p class="pull-left">&copy; AYES Portal <?= date('Y') ?></p>
     </div>
 </footer>
 
