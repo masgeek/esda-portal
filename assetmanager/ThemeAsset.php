@@ -16,7 +16,7 @@ class ThemeAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/bootstrap/bootstrap-theme.min.css',
+        //'css/bootstrap/bootstrap-theme.min.css',
     ];
     public $js = [
     ];
