@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h4><?= Html::encode($this->title) ?></h4>
 
-    <p>AFRICA YOUTH ENTREPRENEURSHIP SOCIETY (AYES) FOR SUSTAINABLE INDUSTRIALIZATION IN AFRICA
+    <p class="text-justify">AFRICA YOUTH ENTREPRENEURSHIP SOCIETY (AYES) FOR SUSTAINABLE INDUSTRIALIZATION IN AFRICA
         An Online Platform for new knowledge creation and sharing in support of enterprise development.
         The Youth Entrepreneurship Society (YES) is a network of young and vibrant African Entrepreneurs and
         Researchers aged below 40 years, who have the passion and motivation to make a big impact through
