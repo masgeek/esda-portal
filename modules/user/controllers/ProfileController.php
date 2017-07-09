@@ -32,7 +32,7 @@ class ProfileController extends Controller
 		    ],
 		    'access' => [
 			    'class' => AccessControl::className(),
-			    'only' => ['index', 'create', 'update', 'file-uploads'],
+			    'only' => ['index', 'update','delete'],
 			    'rules' => [
 				    // allow authenticated users
 				    [
