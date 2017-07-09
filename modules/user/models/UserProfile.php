@@ -31,7 +31,7 @@ class UserProfile extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%user_profile}}';
+        return 'user_profile';
     }
 
     /**
