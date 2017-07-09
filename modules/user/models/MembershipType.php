@@ -19,7 +19,7 @@ class MembershipType extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%membership_type}}';
+        return 'membership_type';
     }
 
     /**

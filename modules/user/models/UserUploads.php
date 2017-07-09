@@ -26,7 +26,7 @@ class UserUploads extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%user_uploads}}';
+        return 'user_uploads';
     }
 
     /**

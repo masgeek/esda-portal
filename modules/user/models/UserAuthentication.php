@@ -24,7 +24,7 @@ class UserAuthentication extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%user_authentication}}';
+        return 'user_authentication';
     }
 
     /**
