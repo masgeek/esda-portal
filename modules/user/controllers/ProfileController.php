@@ -41,13 +41,7 @@ class ProfileController extends Controller
 				    ],
 				    // everything else is denied
 			    ],
-		    ],
-		    'verbs' => [
-			    'class' => VerbFilter::className(),
-			    'actions' => [
-				    'delete' => ['POST'],
-			    ],
-		    ],
+		    ]
 	    ];
     }
 
