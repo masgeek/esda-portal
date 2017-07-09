@@ -8,7 +8,7 @@ $this->title = 'About AYES';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h4><?= Html::encode($this->title) ?></h4>
 
     <p>AFRICA YOUTH ENTREPRENEURSHIP SOCIETY (AYES) FOR SUSTAINABLE INDUSTRIALIZATION IN AFRICA
         An Online Platform for new knowledge creation and sharing in support of enterprise development.
