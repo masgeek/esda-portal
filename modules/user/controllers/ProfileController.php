@@ -7,6 +7,7 @@ use app\modules\user\models\AuthenticationModel;
 use Yii;
 use app\modules\user\models\ProfileModel;
 use app\modules\user\search\ProfileSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,14 +22,33 @@ class ProfileController extends Controller
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
+	    return [
+		    'verbs' => [
+			    'class' => VerbFilter::className(),
+			    'actions' => [
+				    'delete' => ['post'],
+				    'request-for-bid' => ['post'],
+			    ],
+		    ],
+		    'access' => [
+			    'class' => AccessControl::className(),
+			    'only' => ['index', 'create', 'update', 'file-uploads'],
+			    'rules' => [
+				    // allow authenticated users
+				    [
+					    'allow' => true,
+					    'roles' => ['@'],
+				    ],
+				    // everything else is denied
+			    ],
+		    ],
+		    'verbs' => [
+			    'class' => VerbFilter::className(),
+			    'actions' => [
+				    'delete' => ['POST'],
+			    ],
+		    ],
+	    ];
     }
 
     /**
